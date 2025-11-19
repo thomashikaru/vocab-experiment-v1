@@ -176,12 +176,12 @@
         
         .dropdown-item {
             padding: 10px 15px;
-            cursor: pointer;
+            cursor: default;
             border-bottom: 1px solid #eee;
         }
         
         .dropdown-item:hover {
-            background-color: #f0f0f0;
+            background-color: #f8f9fa;
         }
         
         .dropdown-item:last-child {
@@ -857,9 +857,8 @@
                     const item = document.createElement('div');
                     item.className = 'dropdown-item';
                     item.textContent = word;
-                    item.addEventListener('click', () => {
-                        this.selectWord(word);
-                    });
+                    // Dropdown is display-only - words cannot be clicked, only typed
+                    item.style.cursor = 'default';
                     this.dropdown.appendChild(item);
                 });
                 
@@ -1009,11 +1008,12 @@
                     };
                     this.results.push(result);
                     
-                    // Prepare data for server - include Experiment ID and send as array
+                    // Prepare data for server - include Experiment ID and vocab size
                     // Server expects JSON array, not a single object
                     const serverData = {
                         ...result,
-                        Experiment: this.EXPERIMENT_ID
+                        Experiment: this.EXPERIMENT_ID,
+                        vocabSize: this.vocabSize
                     };
                     
                     // Send data to server as an array (server expects _json to be an array)
