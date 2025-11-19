@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vocabulary Constraint Experiment</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .prompt-section {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #4CAF50;
+        }
+        
+        .prompt-info {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .prompt-text {
+            font-size: 16px;
+            color: #333;
+            font-weight: 500;
+            line-height: 1.4;
+        }
+        
+        .consent-screen {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            max-width: 600px;
+            margin: 50px auto;
+        }
+        
+        .consent-notice {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #007bff;
+        }
+        
+        .consent-notice h3 {
+            margin-top: 0;
+            color: #007bff;
+        }
+        
+        .consent-form {
+            margin-bottom: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .form-group input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        
+        .form-group input[type="text"]:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .checkbox-group input[type="checkbox"] {
+            margin-top: 3px;
+        }
+        
+        .checkbox-group label {
+            font-size: 14px;
+            line-height: 1.4;
+            color: #555;
+        }
+        
+        .consent-button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+        }
+        
+        .consent-button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        
+        .consent-button:hover:not(:disabled) {
+            background: #0056b3;
+        }
+        
+        .experiment-screen {
+            display: none;
+        }
+        
+        .input-container {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        
+        #textInput {
+            width: 100%;
+            padding: 15px;
+            font-size: 16px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-family: inherit;
+        }
+        
+        #textInput:focus {
+            outline: none;
+            border-color: #4CAF50;
+        }
+        
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 1px solid #ddd;
+            border-top: none;
+            border-radius: 0 0 5px 5px;
+            max-height: 200px;
+            overflow-y: auto;
+            z-index: 1000;
+            display: none;
+        }
+        
+        .dropdown-item {
+            padding: 10px 15px;
+            cursor: pointer;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .dropdown-item:hover {
+            background-color: #f0f0f0;
+        }
+        
+        .dropdown-item:last-child {
+            border-bottom: none;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #4CAF50;
+        }
+        
+        .stat-label {
+            font-size: 12px;
+            color: #666;
+            text-transform: uppercase;
+        }
+        
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        button {
+            padding: 12px 24px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        #submitBtn {
+            background-color: #4CAF50;
+            color: white;
+        }
+        
+        #submitBtn:hover {
+            background-color: #45a049;
+        }
+        
+        #submitBtn:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        
+        #clearBtn {
+            background-color: #f44336;
+            color: white;
+        }
+        
+        #clearBtn:hover {
+            background-color: #da190b;
+        }
+        
+        .status {
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        
+        .status.valid {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .status.invalid {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .word-breakdown {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+        }
+        
+        .word-item {
+            display: inline-block;
+            margin: 2px;
+            padding: 4px 8px;
+            background-color: #e9ecef;
+            border-radius: 3px;
+            font-size: 14px;
+            cursor: help;
+            transition: all 0.2s ease;
+        }
+        
+        .word-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .word-item.current-word {
+            background-color: #e9ecef !important;
+            border: 2px dashed #6c757d !important;
+            color: #495057;
+        }
+    </style>
+</head>
+<body>
+    <!-- Consent Screen -->
+    <div class="consent-screen" id="consentScreen">
+        <h1>Vocabulary Constraint Experiment</h1>
+        
+        <div class="consent-notice">
+            <h3>Data Collection Notice</h3>
+            <p>This experiment is designed to study typing behavior under vocabulary constraints. We will collect the following data:</p>
+            <ul>
+                <li>Your typed responses to writing prompts</li>
+                <li>Keystroke timing and efficiency data</li>
+                <li>Word-level typing patterns and corrections</li>
+            </ul>
+            <p><strong>Your data will be used for research purposes only and will be stored securely. No personal information beyond your participant ID will be collected.</strong></p>
+        </div>
+        
+        <div class="consent-form">
+            <div class="form-group">
+                <label for="participantId">Participant ID:</label>
+                <input type="text" id="participantId" placeholder="Enter your participant ID">
+            </div>
+            
+            <div class="checkbox-group">
+                <input type="checkbox" id="consentCheckbox">
+                <label for="consentCheckbox">
+                    I have read and understand the data collection notice above. I agree to participate in this experiment and consent to the collection of my typing data for research purposes.
+                </label>
+            </div>
+            
+            <button class="consent-button" id="consentSubmitBtn" disabled>Start Experiment</button>
+        </div>
+    </div>
+    
+    <!-- Experiment Screen -->
+    <div class="container experiment-screen" id="experimentScreen">
+        <h1>Vocabulary Constraint Experiment</h1>
+        <p style="text-align: center; color: #666; margin-top: -20px; margin-bottom: 30px;">How well can you answer questions using only a limited vocabulary?</p>
+        
+        <div class="prompt-section">
+            <div class="prompt-info">
+                <span id="promptCounter">Question 1 of 3</span>
+            </div>
+            <div class="prompt-text" id="promptText">Please describe your favorite hobby in detail.</div>
+        </div>
+        
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-value" id="vocabSize">0</div>
+                <div class="stat-label">Vocabulary Size</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="matchingWords">0</div>
+                <div class="stat-label">Matching Words</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="currentWord">-</div>
+                <div class="stat-label">Current Word</div>
+            </div>
+        </div>
+        
+        <div class="input-container">
+            <input type="text" id="textInput" placeholder="Start typing... (only vocabulary words allowed)">
+            <div class="dropdown" id="dropdown"></div>
+        </div>
+        
+        <div class="controls">
+            <button id="submitBtn" disabled>Submit</button>
+            <button id="clearBtn">Clear</button>
+        </div>
+        
+        <div class="word-breakdown" id="wordBreakdown" style="display: none;">
+            <strong>Word Analysis (redder color indicates greater slowdown):</strong>
+            <div id="wordList"></div>
+        </div>
+    </div>
+
+    <script>
+        class TrieNode {
+            constructor() {
+                this.children = {};
+                this.isEndOfWord = false;
+                this.wordCount = 0; // Number of words with this prefix
+            }
+        }
+
+        class Trie {
+            constructor() {
+                this.root = new TrieNode();
+            }
+
+            insert(word) {
+                let node = this.root;
+                for (let char of word.toLowerCase()) {
+                    if (!node.children[char]) {
+                        node.children[char] = new TrieNode();
+                    }
+                    node = node.children[char];
+                    node.wordCount++;
+                }
+                node.isEndOfWord = true;
+            }
+
+            search(word) {
+                let node = this.root;
+                for (let char of word.toLowerCase()) {
+                    if (!node.children[char]) {
+                        return false;
+                    }
+                    node = node.children[char];
+                }
+                return node.isEndOfWord;
+            }
+
+            startsWith(prefix) {
+                let node = this.root;
+                for (let char of prefix.toLowerCase()) {
+                    if (!node.children[char]) {
+                        return { count: 0, isComplete: false };
+                    }
+                    node = node.children[char];
+                }
+                return { count: node.wordCount, isComplete: node.isEndOfWord };
+            }
+
+            getWordsWithPrefix(prefix, maxCount = 10) {
+                let node = this.root;
+                for (let char of prefix.toLowerCase()) {
+                    if (!node.children[char]) {
+                        return [];
+                    }
+                    node = node.children[char];
+                }
+                
+                const words = [];
+                this._collectWords(node, prefix.toLowerCase(), words, maxCount);
+                return words;
+            }
+
+            _collectWords(node, prefix, words, maxCount) {
+                if (words.length >= maxCount) return;
+                
+                if (node.isEndOfWord) {
+                    words.push(prefix);
+                }
+                
+                for (let char in node.children) {
+                    this._collectWords(node.children[char], prefix + char, words, maxCount);
+                }
+            }
+        }
+
+        class VocabularyExperiment {
+            constructor() {
+                this.trie = new Trie();
+                this.vocabulary = new Set();
+                this.currentText = '';
+                this.currentWord = '';
+                this.lastWordCount = 0;
+                
+                // Keystroke tracking for efficiency analysis
+                this.currentWordKeystrokes = 0;
+                this.currentWordStartTime = null; // Timestamp when current word started
+                this.wordStack = []; // Stack of {word, keystrokes, efficiency, latency} for currently active words
+                this.wordHistory = []; // Complete history of all words ever typed (for display)
+                this.wordId = 0; // Unique ID for each word to track in history
+                
+                // Prompt system
+                this.prompts = [
+                    "Explain the stock market in simple terms.",
+                    "Why is the sky blue?",
+                    "How would you make a paper plane, step by step?"
+                ];
+                this.currentPromptIndex = 0;
+                this.results = []; // Store results for each prompt
+                this.participantId = null; // Store participant ID
+                this.trialStartTime = null; // Timestamp when current trial started
+                
+                // Server configuration
+                this.EXPERIMENT_ID = 207; // Configure this variable as needed
+                
+                this.initializeElements();
+                this.setupEventListeners();
+                this.initializeAudio();
+                this.updatePrompt();
+                this.loadVocabulary(); // Load vocabulary in background
+            }
+
+            initializeElements() {
+                // Consent screen elements
+                this.consentScreen = document.getElementById('consentScreen');
+                this.experimentScreen = document.getElementById('experimentScreen');
+                this.participantIdInput = document.getElementById('participantId');
+                this.consentCheckbox = document.getElementById('consentCheckbox');
+                this.consentSubmitBtn = document.getElementById('consentSubmitBtn');
+                
+                // Experiment elements
+                this.textInput = document.getElementById('textInput');
+                this.dropdown = document.getElementById('dropdown');
+                this.submitBtn = document.getElementById('submitBtn');
+                this.clearBtn = document.getElementById('clearBtn');
+                this.vocabSizeEl = document.getElementById('vocabSize');
+                this.matchingWordsEl = document.getElementById('matchingWords');
+                this.currentWordEl = document.getElementById('currentWord');
+                this.wordBreakdown = document.getElementById('wordBreakdown');
+                this.wordList = document.getElementById('wordList');
+                this.promptCounter = document.getElementById('promptCounter');
+                this.promptText = document.getElementById('promptText');
+            }
+
+            initializeAudio() {
+                // Create audio context for generating sounds
+                this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            
+            updateConsentButton() {
+                const hasParticipantId = this.participantIdInput.value.trim().length > 0;
+                const hasConsent = this.consentCheckbox.checked;
+                this.consentSubmitBtn.disabled = !(hasParticipantId && hasConsent);
+            }
+            
+            startExperiment() {
+                this.participantId = this.participantIdInput.value.trim();
+                
+                // Hide consent screen and show experiment
+                this.consentScreen.style.display = 'none';
+                this.experimentScreen.style.display = 'block';
+                
+                // Focus on the text input
+                this.textInput.focus();
+                
+                // Record trial start time for first prompt
+                this.trialStartTime = Date.now();
+                
+                // console.log(`Experiment started for participant: ${this.participantId}`);
+            }
+            
+            sendDataToServer(jsonData) {
+                const xhr = new XMLHttpRequest();
+                // Ensure EXPERIMENT_ID is converted to string for URL
+                const url = `https://noisy-comp-server-311aa565092d.herokuapp.com/api/submit_experiment/${String(this.EXPERIMENT_ID)}`;
+                
+                xhr.open("POST", url, true);
+                xhr.setRequestHeader("Content-Type", "application/json");
+                
+                xhr.onload = function () {
+                    if (xhr.status >= 200 && xhr.status < 300) {
+                        console.log("Success:", xhr.responseText);
+                    } else {
+                        console.error("Request failed with status: " + xhr.status);
+                        console.error("Response:", xhr.responseText);
+                        console.error("Request URL:", url);
+                        console.error("Request data:", JSON.stringify(jsonData, null, 2));
+                    }
+                };
+                
+                xhr.onerror = function () {
+                    console.error("Network error occurred while sending data");
+                };
+                
+                // Log what we're sending for debugging
+                console.log("Sending data to server:", JSON.stringify(jsonData, null, 2));
+                console.log("URL:", url);
+                
+                try {
+                    const jsonString = JSON.stringify(jsonData);
+                    xhr.send(jsonString);
+                } catch (error) {
+                    console.error("Error stringifying JSON:", error);
+                    console.error("Data that failed to stringify:", jsonData);
+                }
+            }
+
+            playSuccessSound() {
+                // Pleasant ping sound for valid word completion
+                const oscillator = this.audioContext.createOscillator();
+                const gainNode = this.audioContext.createGain();
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(this.audioContext.destination);
+                
+                oscillator.frequency.setValueAtTime(800, this.audioContext.currentTime);
+                oscillator.frequency.exponentialRampToValueAtTime(1200, this.audioContext.currentTime + 0.1);
+                
+                gainNode.gain.setValueAtTime(0.3, this.audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, this.audioContext.currentTime + 0.2);
+                
+                oscillator.start(this.audioContext.currentTime);
+                oscillator.stop(this.audioContext.currentTime + 0.2);
+            }
+
+            playErrorSound() {
+                // Error buzzer sound for invalid key presses
+                const oscillator = this.audioContext.createOscillator();
+                const gainNode = this.audioContext.createGain();
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(this.audioContext.destination);
+                
+                oscillator.frequency.setValueAtTime(200, this.audioContext.currentTime);
+                oscillator.frequency.exponentialRampToValueAtTime(150, this.audioContext.currentTime + 0.1);
+                
+                gainNode.gain.setValueAtTime(0.2, this.audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, this.audioContext.currentTime + 0.15);
+                
+                oscillator.start(this.audioContext.currentTime);
+                oscillator.stop(this.audioContext.currentTime + 0.15);
+            }
+
+            async loadVocabulary() {
+                try {
+                    console.log('Loading vocabulary...');
+                    const vocabPath = 'data/word_families/vocab_250/vocabulary_250.json';
+                    const response = await fetch(vocabPath);
+                    const words = await response.json();
+
+                    for (const word of words) {
+                        const cleanWord = word.trim().toLowerCase();
+                        if (cleanWord && cleanWord.length > 0) {
+                            this.vocabulary.add(cleanWord);
+                            this.trie.insert(cleanWord);
+                        }
+                    }
+
+                    // Extract seed vocabulary size from path (e.g., "vocab_500" -> 500)
+                    const vocabSizeMatch = vocabPath.match(/vocab_(\d+)/);
+                    const seedVocabSize = vocabSizeMatch ? parseInt(vocabSizeMatch[1], 10) : this.vocabulary.size;
+
+                    console.log(`Loaded ${words.length} words from vocabulary.json`);
+                    console.log(`Added ${this.vocabulary.size} unique words to vocabulary`);
+                    console.log(`Seed vocabulary size: ${seedVocabSize} word families`);
+                    this.vocabSizeEl.textContent = seedVocabSize;
+                    console.log('Vocabulary loading complete');
+                } catch (error) {
+                    console.error('Error loading vocabulary:', error);
+                }
+            }
+
+            setupEventListeners() {
+                // Consent screen event listeners
+                this.participantIdInput.addEventListener('input', () => this.updateConsentButton());
+                this.consentCheckbox.addEventListener('change', () => this.updateConsentButton());
+                this.consentSubmitBtn.addEventListener('click', () => this.startExperiment());
+                
+                // Experiment event listeners
+                this.textInput.addEventListener('input', (e) => this.handleInput(e));
+                this.textInput.addEventListener('keydown', (e) => this.handleKeyDown(e));
+                this.textInput.addEventListener('blur', () => this.hideDropdown());
+                this.submitBtn.addEventListener('click', () => this.submitText());
+                this.clearBtn.addEventListener('click', () => this.clearText());
+            }
+
+            handleKeyDown(e) {
+                const cursorPos = this.textInput.selectionStart;
+                const textBeforeCursor = this.textInput.value.substring(0, cursorPos);
+                const textAfterCursor = this.textInput.value.substring(cursorPos);
+                
+                // Handle space key first (before incrementing counter)
+                if (e.key === ' ') {
+                    e.preventDefault();
+                    const words = textBeforeCursor.trim().split(/\s+/);
+                    const currentWord = words[words.length - 1] || '';
+                    
+                    if (this.vocabulary.has(currentWord.toLowerCase())) {
+                        // Word completed successfully - record efficiency (don't count the space)
+                        const efficiency = this.currentWordKeystrokes / currentWord.length;
+                        
+                        // Calculate latency (time spent typing the word)
+                        const latency = this.currentWordStartTime ? 
+                            Date.now() - this.currentWordStartTime : 0;
+                        
+                        // console.log(`Word completed: "${currentWord}" (${currentWord.length} chars, ${this.currentWordKeystrokes} keystrokes, efficiency: ${efficiency.toFixed(2)}, latency: ${latency}ms)`);
+                        
+                        const wordData = {
+                            id: this.wordId++,
+                            word: currentWord,
+                            keystrokes: this.currentWordKeystrokes,
+                            efficiency: efficiency,
+                            latency: latency,
+                            active: true
+                        };
+                        
+                        // Push onto stack (currently active words)
+                        this.wordStack.push(wordData);
+                        
+                        // Add to history (all words ever typed)
+                        this.wordHistory.push(wordData);
+                        
+                        // Reset counter and timer for next word
+                        // Timer will start again on the next keypress (same as after page load/clear)
+                        this.currentWordKeystrokes = 0;
+                        this.currentWordStartTime = null;
+                        
+                        this.textInput.value = textBeforeCursor + ' ' + textAfterCursor;
+                        this.textInput.setSelectionRange(cursorPos + 1, cursorPos + 1);
+                        this.handleInput({ target: this.textInput });
+                        // this.playSuccessSound(); // Play success sound for valid word completion (disabled)
+                    } else {
+                        this.playErrorSound(); // Play error sound for invalid space
+                    }
+                    return;
+                }
+                
+                // Increment keystroke counter for any key press (except backspace and space)
+                if (e.key !== 'Backspace' && e.key !== ' ') {
+                    this.currentWordKeystrokes++;
+                }
+                
+                // Handle backspace
+                if (e.key === 'Backspace') {
+                    // Decrement keystroke counter for backspace
+                    if (this.currentWordKeystrokes > 0) {
+                        this.currentWordKeystrokes--;
+                    }
+                    return; // Allow backspace
+                }
+                
+                // Handle other keys
+                if (e.key.length === 1) {
+                    const newText = textBeforeCursor + e.key + textAfterCursor;
+                    const words = newText.trim().split(/\s+/);
+                    const currentWord = words[words.length - 1] || '';
+                    
+                    // Start timing only if timer is null (first word after page load/clear/valid space)
+                    // Timer should NOT reset when typing characters - it only resets when a valid word is added
+                    if (this.currentWordStartTime === null) {
+                        this.currentWordStartTime = Date.now();
+                    }
+                    
+                    // Check if the current word is a valid prefix
+                    const prefixResult = this.trie.startsWith(currentWord.toLowerCase());
+                    if (prefixResult.count === 0) {
+                        e.preventDefault();
+                        this.playErrorSound(); // Play error sound for invalid character
+                        return;
+                    }
+                }
+            }
+
+            handleInput(e) {
+                const previousText = this.currentText;
+                this.currentText = e.target.value;
+                const words = this.currentText.trim().split(/\s+/);
+                this.currentWord = words[words.length - 1] || '';
+                
+                // Check if a word was deleted (text got shorter)
+                if (this.currentText.length < previousText.length) {
+                    this.checkForDeletedWord(previousText, this.currentText);
+                }
+                
+                this.updateStats();
+                this.updateDropdown();
+                this.updateSubmitButton();
+                this.updateWordBreakdown();
+            }
+
+            checkForDeletedWord(previousText, currentText) {
+                const currentWords = currentText.trim().split(/\s+/);
+                
+                // Rebuild the stack to match the current text state
+                // Mark all words in history as inactive first
+                this.wordHistory.forEach(word => word.active = false);
+                
+                // Rebuild stack from current words, matching with history
+                this.wordStack = [];
+                let historyIndex = 0;
+                
+                for (const currentWord of currentWords) {
+                    // Find the next matching word in history
+                    while (historyIndex < this.wordHistory.length) {
+                        const historyWord = this.wordHistory[historyIndex];
+                        if (historyWord.word === currentWord) {
+                            // Found a match - mark as active and add to stack
+                            historyWord.active = true;
+                            this.wordStack.push(historyWord);
+                            historyIndex++;
+                            break;
+                        } else {
+                            // This word was deleted/changed
+                            historyWord.active = false;
+                            // console.log(`Word deleted: "${historyWord.word}"`);
+                            historyIndex++;
+                        }
+                    }
+                }
+                
+                // Mark any remaining words in history as deleted
+                while (historyIndex < this.wordHistory.length) {
+                    const historyWord = this.wordHistory[historyIndex];
+                    historyWord.active = false;
+                    // console.log(`Word deleted: "${historyWord.word}"`);
+                    historyIndex++;
+                }
+            }
+
+            updatePrompt() {
+                this.promptCounter.textContent = `Question ${this.currentPromptIndex + 1} of ${this.prompts.length}`;
+                this.promptText.textContent = this.prompts[this.currentPromptIndex];
+                // Record trial start time when prompt is shown
+                this.trialStartTime = Date.now();
+            }
+
+            updateStats() {
+                const prefixResult = this.trie.startsWith(this.currentWord.toLowerCase());
+                this.matchingWordsEl.textContent = prefixResult.count;
+                this.currentWordEl.textContent = this.currentWord || '-';
+            }
+
+            updateDropdown() {
+                if (!this.currentWord) {
+                    this.hideDropdown();
+                    return;
+                }
+                
+                const matchingWords = this.trie.getWordsWithPrefix(this.currentWord.toLowerCase(), 10);
+                
+                if (matchingWords.length === 0) {
+                    this.hideDropdown();
+                    return;
+                }
+                
+                this.dropdown.innerHTML = '';
+                matchingWords.forEach(word => {
+                    const item = document.createElement('div');
+                    item.className = 'dropdown-item';
+                    item.textContent = word;
+                    item.addEventListener('click', () => {
+                        this.selectWord(word);
+                    });
+                    this.dropdown.appendChild(item);
+                });
+                
+                this.showDropdown();
+            }
+
+            selectWord(word) {
+                const words = this.currentText.trim().split(/\s+/);
+                words[words.length - 1] = word;
+                this.textInput.value = words.join(' ') + ' ';
+                this.textInput.focus();
+                this.hideDropdown();
+                this.handleInput({ target: this.textInput });
+                // this.playSuccessSound(); // Play success sound when selecting a word from dropdown (disabled)
+            }
+
+            showDropdown() {
+                this.dropdown.style.display = 'block';
+            }
+
+            hideDropdown() {
+                this.dropdown.style.display = 'none';
+            }
+
+            updateSubmitButton() {
+                const words = this.currentText.trim().split(/\s+/).filter(word => word.length > 0);
+                const allValid = words.every(word => this.vocabulary.has(word.toLowerCase()));
+                this.submitBtn.disabled = !allValid || words.length === 0;
+            }
+
+            updateWordBreakdown() {
+                const words = this.currentText.trim().split(/\s+/).filter(word => word.length > 0);
+                
+                if (words.length === 0) {
+                    this.wordBreakdown.style.display = 'none';
+                    return;
+                }
+                
+                this.wordList.innerHTML = '';
+                
+                // Display all words in chronological order from history
+                this.wordHistory.forEach(wordData => {
+                    const span = document.createElement('span');
+                    span.className = 'word-item';
+                    span.textContent = wordData.word;
+                    
+                    if (!wordData.active) {
+                        // Deleted word styling
+                        const latency = wordData.latency !== undefined ? wordData.latency : 0;
+                        span.title = `Deleted: ${wordData.keystrokes} keystrokes, efficiency: ${wordData.efficiency.toFixed(2)}, latency: ${latency}ms`;
+                        span.style.backgroundColor = '#e9ecef';
+                        span.style.color = '#6c757d';
+                        span.style.textDecoration = 'line-through';
+                    } else {
+                        // Active word styling with latency-based colors
+                        const latency = wordData.latency !== undefined ? wordData.latency : 0;
+                        span.title = `${wordData.keystrokes} keystrokes, efficiency: ${wordData.efficiency.toFixed(2)}, latency: ${latency}ms`;
+                        
+                        // Color based on latency per character (ms per character)
+                        const latencyPerChar = wordData.word.length > 0 ? latency / wordData.word.length : 0;
+                        let hue, saturation = 80, lightness;
+                        
+                        // Thresholds: < 100ms/char = green, 100-300ms/char = yellow, > 300ms/char = red
+                        // Using lower thresholds for better color differentiation
+                        if (latencyPerChar <= 100) {
+                            // Fast typing (green) - lower latency = greener
+                            hue = 120; // Pure green
+                            const ratio = latencyPerChar / 100; // 0 to 1
+                            lightness = 75 - ratio * 15; // 75% to 60% (darker for faster)
+                        } else if (latencyPerChar <= 300) {
+                            // Moderate latency (green to yellow to red) - 100 to 300ms/char
+                            const ratio = (latencyPerChar - 100) / 200; // 0 to 1
+                            hue = 120 - ratio * 120; // Green (120) to red (0) through yellow (60)
+                            lightness = 60; // Fixed lightness in middle range
+                        } else {
+                            // High latency (red) - > 300ms/char
+                            hue = 0; // Pure red
+                            const excessRatio = Math.min((latencyPerChar - 300) / 300, 1); // Cap at 2x threshold
+                            lightness = 60 - excessRatio * 15; // 60% to 45% (darker for higher latency)
+                        }
+                        
+                        const colorString = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+                        // console.log(`Word "${wordData.word}": latency=${latency}ms, latencyPerChar=${latencyPerChar.toFixed(2)}ms/char, color=${colorString}`);
+                        span.style.backgroundColor = colorString;
+                    }
+                    
+                    this.wordList.appendChild(span);
+                });
+                
+                // Display current word being typed (if any)
+                if (this.currentWord && this.currentWord.length > 0) {
+                    const span = document.createElement('span');
+                    span.className = 'word-item current-word';
+                    span.textContent = this.currentWord;
+                    span.title = `Currently typing: ${this.currentWordKeystrokes} keystrokes so far`;
+                    span.style.backgroundColor = '#e9ecef';
+                    span.style.border = '2px dashed #6c757d';
+                    this.wordList.appendChild(span);
+                }
+                
+                this.wordBreakdown.style.display = 'block';
+            }
+
+
+            submitText() {
+                const words = this.currentText.trim().split(/\s+/).filter(word => word.length > 0);
+                const allValid = words.every(word => this.vocabulary.has(word.toLowerCase()));
+                
+                if (allValid && words.length > 0) {
+                    // Add the current word being typed to the analysis if it exists
+                    if (this.currentWord && this.currentWord.length > 0 && this.vocabulary.has(this.currentWord.toLowerCase())) {
+                        const efficiency = this.currentWordKeystrokes / this.currentWord.length;
+                        
+                        // Calculate latency for final word
+                        const latency = this.currentWordStartTime ? 
+                            Date.now() - this.currentWordStartTime : 0;
+                        
+                        const wordData = {
+                            id: this.wordId++,
+                            word: this.currentWord,
+                            keystrokes: this.currentWordKeystrokes,
+                            efficiency: efficiency,
+                            latency: latency,
+                            active: true
+                        };
+                        
+                        // Add to history and stack
+                        this.wordHistory.push(wordData);
+                        this.wordStack.push(wordData);
+                        
+                        // console.log(`Final word completed: "${this.currentWord}" (${this.currentWord.length} chars, ${this.currentWordKeystrokes} keystrokes, efficiency: ${efficiency.toFixed(2)}, latency: ${latency}ms)`);
+                    }
+                    
+                    // Calculate trial end time
+                    const trialEndTime = Date.now();
+                    
+                    // Save results for current prompt
+                    const result = {
+                        participantId: this.participantId,
+                        promptIndex: this.currentPromptIndex,
+                        prompt: this.prompts[this.currentPromptIndex],
+                        response: this.currentText,
+                        wordHistory: [...this.wordHistory], // Copy of word history
+                        startTime: this.trialStartTime ? new Date(this.trialStartTime).toISOString() : null,
+                        endTime: new Date(trialEndTime).toISOString(),
+                        timestamp: new Date().toISOString()
+                    };
+                    this.results.push(result);
+                    
+                    // Prepare data for server - include Experiment ID and send as array
+                    // Server expects JSON array, not a single object
+                    const serverData = {
+                        ...result,
+                        Experiment: this.EXPERIMENT_ID
+                    };
+                    
+                    // Send data to server as an array (server expects _json to be an array)
+                    this.sendDataToServer([serverData]);
+                    
+                    console.log('=== PROMPT RESULT ===');
+                    console.log(`Prompt ${this.currentPromptIndex + 1}: ${result.prompt}`);
+                    console.log(`Response: "${result.response}"`);
+                    console.log(`Word Analysis:`, result.wordHistory);
+                    console.log('===================');
+                    
+                    // Move to next prompt or finish
+                    this.currentPromptIndex++;
+                    if (this.currentPromptIndex < this.prompts.length) {
+                        this.updatePrompt();
+                        this.clearText();
+                    } else {
+                        // All prompts completed
+                        console.log('=== EXPERIMENT COMPLETED ===');
+                        console.log('All Results:', this.results);
+                        alert('Experiment completed! Check console for all results.');
+                        this.currentPromptIndex = 0; // Reset for potential restart
+                        this.updatePrompt();
+                        this.clearText();
+                    }
+                } else {
+                    alert('Cannot submit: contains invalid words');
+                }
+            }
+
+            clearText() {
+                this.textInput.value = '';
+                this.currentText = '';
+                this.currentWord = '';
+                this.currentWordKeystrokes = 0;
+                this.currentWordStartTime = null;
+                this.wordStack = [];
+                this.wordHistory = [];
+                this.wordId = 0;
+                this.hideDropdown();
+                this.updateStats();
+                this.updateSubmitButton();
+                this.updateWordBreakdown();
+                this.textInput.focus();
+            }
+            
+            resetExperiment() {
+                this.currentPromptIndex = 0;
+                this.results = [];
+                this.updatePrompt();
+                this.clearText();
+            }
+        }
+
+        // Initialize the experiment when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            new VocabularyExperiment();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+================================================================================
+QUICK DEPLOYMENT STEPS - GitHub Pages
+================================================================================
+
+Your GitHub Pages repository is ready! Here's what to do next:
+
+1. CREATE GITHUB REPOSITORY
+   - Go to https://github.com/new
+   - Repository name: (choose a name, e.g., "vocab-experiment")
+   - Make it PUBLIC (required for free GitHub Pages)
+   - DO NOT initialize with README, .gitignore, or license
+   - Click "Create repository"
+
+2. INITIALIZE AND PUSH (run these commands in the vocab-experiment-gh-pages directory)
+   
+   cd vocab-experiment-gh-pages
+   git init
+   git add .
+   git commit -m "Initial commit: Vocabulary experiment"
+   git branch -M main
+   git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
+   git push -u origin main
+   
+   (Replace YOUR_USERNAME and YOUR_REPO_NAME with your actual values)
+
+3. ENABLE GITHUB PAGES
+   - Go to your repository on GitHub.com
+   - Click "Settings" (top menu)
+   - Click "Pages" (left sidebar)
+   - Under "Source":
+     * Branch: main
+     * Folder: / (root)
+   - Click "Save"
+
+4. ACCESS YOUR SITE
+   - Wait 1-2 minutes
+   - Visit: https://YOUR_USERNAME.github.io/YOUR_REPO_NAME/
+   - Your experiment should be live!
+
+================================================================================
+WHAT'S INCLUDED
+================================================================================
+
+✓ index.html - Main experiment page (renamed from vocab_experiment.html)
+✓ data/word_families/ - All vocabulary files (250, 500, 1000, 2000, 4000, 8000, 16000)
+✓ README.md - Full documentation
+✓ SETUP.md - Detailed setup instructions
+✓ .gitignore - Git ignore file
+
+================================================================================
+CONFIGURATION OPTIONS
+================================================================================
+
+To change the vocabulary size, edit index.html line ~614:
+  const vocabPath = 'data/word_families/vocab_250/vocabulary_250.json';
+  
+Available options:
+  - vocab_250/vocabulary_250.json
+  - vocab_500/vocabulary_500.json
+  - vocab_1000/vocabulary_1000.json
+  - vocab_2000/vocabulary_2000.json
+  - vocab_4000/vocabulary_4000.json
+  - vocab_8000/vocabulary_8000.json
+  - vocab_16000/vocabulary_16000.json
+
+To change the experiment ID, edit index.html line ~481:
+  this.EXPERIMENT_ID = 207;
+
+================================================================================
+TROUBLESHOOTING
+================================================================================
+
+- Site not loading? Check Settings → Pages is enabled
+- 404 errors? Verify file paths are correct
+- JSON not loading? Check browser console (F12)
+- Changes not appearing? Wait 2-3 minutes, clear cache
+
+================================================================================
+
