@@ -480,11 +480,38 @@
                 // Server configuration
                 this.EXPERIMENT_ID = 207; // Configure this variable as needed
                 
+                // Get vocab size from URL parameter, default to 250
+                this.vocabSize = this.getVocabSizeFromURL();
+                
                 this.initializeElements();
                 this.setupEventListeners();
                 this.initializeAudio();
                 this.updatePrompt();
                 this.loadVocabulary(); // Load vocabulary in background
+            }
+            
+            getVocabSizeFromURL() {
+                // Valid vocabulary sizes available in data/word_families
+                const validSizes = [250, 500, 1000, 2000, 4000, 8000, 16000];
+                const defaultSize = 250;
+                
+                // Get URL parameters
+                const urlParams = new URLSearchParams(window.location.search);
+                const vocabSizeParam = urlParams.get('vocabsize');
+                
+                if (!vocabSizeParam) {
+                    return defaultSize;
+                }
+                
+                // Parse and validate the vocab size
+                const vocabSize = parseInt(vocabSizeParam, 10);
+                
+                if (isNaN(vocabSize) || !validSizes.includes(vocabSize)) {
+                    console.warn(`Invalid vocab size "${vocabSizeParam}". Using default size ${defaultSize}. Valid sizes are: ${validSizes.join(', ')}`);
+                    return defaultSize;
+                }
+                
+                return vocabSize;
             }
 
             initializeElements() {
@@ -611,8 +638,16 @@
             async loadVocabulary() {
                 try {
                     console.log('Loading vocabulary...');
-                    const vocabPath = 'data/word_families/vocab_250/vocabulary_250.json';
+                    // Use vocab size from URL parameter (or default)
+                    const vocabPath = `data/word_families/vocab_${this.vocabSize}/vocabulary_${this.vocabSize}.json`;
+                    console.log(`Loading vocabulary from: ${vocabPath}`);
+                    
                     const response = await fetch(vocabPath);
+                    
+                    if (!response.ok) {
+                        throw new Error(`Failed to load vocabulary file: ${response.status} ${response.statusText}`);
+                    }
+                    
                     const words = await response.json();
 
                     for (const word of words) {
@@ -623,17 +658,14 @@
                         }
                     }
 
-                    // Extract seed vocabulary size from path (e.g., "vocab_500" -> 500)
-                    const vocabSizeMatch = vocabPath.match(/vocab_(\d+)/);
-                    const seedVocabSize = vocabSizeMatch ? parseInt(vocabSizeMatch[1], 10) : this.vocabulary.size;
-
                     console.log(`Loaded ${words.length} words from vocabulary.json`);
                     console.log(`Added ${this.vocabulary.size} unique words to vocabulary`);
-                    console.log(`Seed vocabulary size: ${seedVocabSize} word families`);
-                    this.vocabSizeEl.textContent = seedVocabSize;
+                    console.log(`Seed vocabulary size: ${this.vocabSize} word families`);
+                    this.vocabSizeEl.textContent = this.vocabSize;
                     console.log('Vocabulary loading complete');
                 } catch (error) {
                     console.error('Error loading vocabulary:', error);
+                    alert(`Error loading vocabulary: ${error.message}. Please check the URL parameter or try refreshing the page.`);
                 }
             }
 
