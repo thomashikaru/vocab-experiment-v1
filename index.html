@@ -139,6 +139,20 @@
             display: none;
         }
         
+        .thank-you-screen {
+            text-align: center;
+            padding: 60px 30px;
+        }
+        
+        .thank-you-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .completion-code-section {
+            margin: 40px 0;
+        }
+        
         .input-container {
             position: relative;
             margin-bottom: 20px;
@@ -375,6 +389,22 @@
             <div id="wordList"></div>
         </div>
     </div>
+    
+    <!-- Thank You Screen -->
+    <div class="container thank-you-screen" id="thankYouScreen" style="display: none;">
+        <h1>Thank You!</h1>
+        <div class="thank-you-content">
+            <p style="font-size: 18px; margin-bottom: 30px;">Thank you for participating in this experiment.</p>
+            
+            <div class="completion-code-section">
+                <p style="font-size: 16px; color: #666; margin-bottom: 10px;">Your completion code:</p>
+                <div id="completionCode" style="font-size: 32px; font-weight: bold; color: #4CAF50; letter-spacing: 3px; padding: 20px; background-color: #f8f9fa; border-radius: 8px; display: inline-block; margin-bottom: 20px;"></div>
+            </div>
+            
+            <p style="font-size: 16px; color: #666; margin-top: 30px;">It is now safe to close this window.</p>
+            <p style="font-size: 16px; color: #666;">Your responses have been saved.</p>
+        </div>
+    </div>
 
     <script>
         class TrieNode {
@@ -480,6 +510,9 @@
                 // Server configuration
                 this.EXPERIMENT_ID = 207; // Configure this variable as needed
                 
+                // Completion code (default value)
+                this.COMPLETION_CODE = "000000"; // Configure this variable as needed
+                
                 // Get vocab size from URL parameter, default to 250
                 this.vocabSize = this.getVocabSizeFromURL();
                 
@@ -518,6 +551,7 @@
                 // Consent screen elements
                 this.consentScreen = document.getElementById('consentScreen');
                 this.experimentScreen = document.getElementById('experimentScreen');
+                this.thankYouScreen = document.getElementById('thankYouScreen');
                 this.participantIdInput = document.getElementById('participantId');
                 this.consentCheckbox = document.getElementById('consentCheckbox');
                 this.consentSubmitBtn = document.getElementById('consentSubmitBtn');
@@ -534,6 +568,7 @@
                 this.wordList = document.getElementById('wordList');
                 this.promptCounter = document.getElementById('promptCounter');
                 this.promptText = document.getElementById('promptText');
+                this.completionCodeEl = document.getElementById('completionCode');
             }
 
             initializeAudio() {
@@ -1034,10 +1069,7 @@
                         // All prompts completed
                         console.log('=== EXPERIMENT COMPLETED ===');
                         console.log('All Results:', this.results);
-                        alert('Experiment completed! Check console for all results.');
-                        this.currentPromptIndex = 0; // Reset for potential restart
-                        this.updatePrompt();
-                        this.clearText();
+                        this.showThankYouScreen();
                     }
                 } else {
                     alert('Cannot submit: contains invalid words');
@@ -1058,6 +1090,17 @@
                 this.updateSubmitButton();
                 this.updateWordBreakdown();
                 this.textInput.focus();
+            }
+            
+            showThankYouScreen() {
+                // Hide experiment screen
+                this.experimentScreen.style.display = 'none';
+                
+                // Show thank you screen
+                this.thankYouScreen.style.display = 'block';
+                
+                // Display completion code
+                this.completionCodeEl.textContent = this.COMPLETION_CODE;
             }
             
             resetExperiment() {
