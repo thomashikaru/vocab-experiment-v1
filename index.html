@@ -350,7 +350,10 @@
     <!-- Experiment Screen -->
     <div class="container experiment-screen" id="experimentScreen">
         <h1>Vocabulary Constraint Experiment</h1>
-        <p style="text-align: center; color: #666; margin-top: -20px; margin-bottom: 30px;">How well can you answer questions using only a limited vocabulary?</p>
+        <p style="text-align: center; color: #666; margin-top: -20px; margin-bottom: 30px;">
+            How well can you answer questions using only a limited vocabulary?<br>
+            Instructions: For each prompt, type an answer to the question. The drop-down will show you which words are allowed. You do not need to select words from the drop-down - just keep typing or use backspace to delete characters or words. Turn your volume on to hear a buzzer sound when you try to type a word that's outside the allowed vocabulary. At first it might seem hard, but you might get used to it as the study goes on.
+        </p>
         
         <div class="prompt-section">
             <div class="prompt-info">
@@ -367,10 +370,6 @@
             <div class="stat-item">
                 <div class="stat-value" id="matchingWords">0</div>
                 <div class="stat-label">Matching Words</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-value" id="currentWord">-</div>
-                <div class="stat-label">Current Word</div>
             </div>
         </div>
         
@@ -497,11 +496,7 @@
                 this.wordId = 0; // Unique ID for each word to track in history
                 
                 // Prompt system
-                this.prompts = [
-                    "Explain the stock market in simple terms.",
-                    "Why is the sky blue?",
-                    "How would you make a paper plane, step by step?"
-                ];
+                this.prompts = []; // Will be loaded from CSV
                 this.currentPromptIndex = 0;
                 this.results = []; // Store results for each prompt
                 this.participantId = null; // Store participant ID
@@ -516,11 +511,15 @@
                 // Get vocab size from URL parameter, default to 250
                 this.vocabSize = this.getVocabSizeFromURL();
                 
+                // Get question list name from URL parameter
+                this.questionListName = this.getQuestionListNameFromURL();
+                
                 this.initializeElements();
                 this.setupEventListeners();
                 this.initializeAudio();
-                this.updatePrompt();
-                this.loadVocabulary(); // Load vocabulary in background
+                
+                // Load prompts and vocabulary, then start
+                this.loadPromptsAndVocabulary();
             }
             
             getVocabSizeFromURL() {
@@ -546,6 +545,141 @@
                 
                 return vocabSize;
             }
+            
+            getQuestionListNameFromURL() {
+                // Valid question list names
+                const validLists = ['How', 'Why', 'ExplainSimple', 'RedditELI5'];
+                const defaultList = 'ExplainSimple';
+                
+                // Get URL parameters
+                const urlParams = new URLSearchParams(window.location.search);
+                const listParam = urlParams.get('list');
+                
+                if (!listParam) {
+                    return defaultList;
+                }
+                
+                // Validate the list name
+                if (!validLists.includes(listParam)) {
+                    console.warn(`Invalid question list "${listParam}". Using default list "${defaultList}". Valid lists are: ${validLists.join(', ')}`);
+                    return defaultList;
+                }
+                
+                return listParam;
+            }
+            
+            stripTrailingPunctuation(word) {
+                // Remove trailing commas and periods for vocabulary validation
+                // This allows words like "word," or "word." to be considered valid
+                return word.replace(/[,\.]+$/, '');
+            }
+            
+            shuffleArray(array) {
+                // Fisher-Yates shuffle algorithm for randomizing array order
+                const shuffled = [...array]; // Create a copy to avoid mutating original
+                for (let i = shuffled.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+                }
+                return shuffled;
+            }
+            
+            async loadPromptsFromCSV() {
+                try {
+                    const csvPath = `data/questions_${this.questionListName}.csv`;
+                    console.log(`Loading prompts from: ${csvPath}`);
+                    
+                    const response = await fetch(csvPath);
+                    
+                    if (!response.ok) {
+                        throw new Error(`Failed to load prompts file: ${response.status} ${response.statusText}`);
+                    }
+                    
+                    const csvText = await response.text();
+                    
+                    // Parse CSV
+                    const lines = csvText.trim().split('\n');
+                    const headers = lines[0].split(',');
+                    
+                    // Find the index of questionText column
+                    const questionTextIndex = headers.indexOf('questionText');
+                    if (questionTextIndex === -1) {
+                        throw new Error('questionText column not found in CSV');
+                    }
+                    
+                    // Extract questionText from each row (skip header)
+                    this.prompts = [];
+                    for (let i = 1; i < lines.length; i++) {
+                        const line = lines[i].trim();
+                        if (!line) continue;
+                        
+                        // Handle CSV parsing (account for commas in quoted fields)
+                        const values = this.parseCSVLine(line);
+                        if (values.length > questionTextIndex) {
+                            let questionText = values[questionTextIndex].trim();
+                            // Remove surrounding quotes if present
+                            if (questionText.startsWith('"') && questionText.endsWith('"')) {
+                                questionText = questionText.slice(1, -1);
+                            }
+                            if (questionText) {
+                                this.prompts.push(questionText);
+                            }
+                        }
+                    }
+                    
+                    console.log(`Loaded ${this.prompts.length} prompts from ${csvPath}`);
+                    
+                    if (this.prompts.length === 0) {
+                        throw new Error('No prompts found in CSV file');
+                    }
+                    
+                    // Randomly shuffle the prompts so each user sees them in a different order
+                    this.prompts = this.shuffleArray(this.prompts);
+                    console.log('Prompts shuffled for randomized order');
+                    
+                    return true;
+                } catch (error) {
+                    console.error('Error loading prompts:', error);
+                    alert(`Error loading prompts: ${error.message}. Please check the URL parameter or try refreshing the page.`);
+                    return false;
+                }
+            }
+            
+            parseCSVLine(line) {
+                // Simple CSV parser that handles quoted fields
+                const values = [];
+                let current = '';
+                let inQuotes = false;
+                
+                for (let i = 0; i < line.length; i++) {
+                    const char = line[i];
+                    
+                    if (char === '"') {
+                        inQuotes = !inQuotes;
+                    } else if (char === ',' && !inQuotes) {
+                        values.push(current);
+                        current = '';
+                    } else {
+                        current += char;
+                    }
+                }
+                values.push(current); // Add the last value
+                
+                return values;
+            }
+            
+            async loadPromptsAndVocabulary() {
+                // Load prompts first, then vocabulary, then initialize
+                const promptsLoaded = await this.loadPromptsFromCSV();
+                
+                if (promptsLoaded) {
+                    // Update prompt display
+                    this.updatePrompt();
+                    
+                    // Load vocabulary
+                    await this.loadVocabulary();
+                }
+            }
 
             initializeElements() {
                 // Consent screen elements
@@ -563,7 +697,6 @@
                 this.clearBtn = document.getElementById('clearBtn');
                 this.vocabSizeEl = document.getElementById('vocabSize');
                 this.matchingWordsEl = document.getElementById('matchingWords');
-                this.currentWordEl = document.getElementById('currentWord');
                 this.wordBreakdown = document.getElementById('wordBreakdown');
                 this.wordList = document.getElementById('wordList');
                 this.promptCounter = document.getElementById('promptCounter');
@@ -584,6 +717,12 @@
             
             startExperiment() {
                 this.participantId = this.participantIdInput.value.trim();
+                
+                // Check if prompts are loaded
+                if (this.prompts.length === 0) {
+                    alert('Questions are still loading. Please wait a moment and try again.');
+                    return;
+                }
                 
                 // Hide consent screen and show experiment
                 this.consentScreen.style.display = 'none';
@@ -728,8 +867,9 @@
                     e.preventDefault();
                     const words = textBeforeCursor.trim().split(/\s+/);
                     const currentWord = words[words.length - 1] || '';
+                    const wordForValidation = this.stripTrailingPunctuation(currentWord);
                     
-                    if (this.vocabulary.has(currentWord.toLowerCase())) {
+                    if (this.vocabulary.has(wordForValidation.toLowerCase())) {
                         // Word completed successfully - record efficiency (don't count the space)
                         const efficiency = this.currentWordKeystrokes / currentWord.length;
                         
@@ -788,6 +928,7 @@
                     const newText = textBeforeCursor + e.key + textAfterCursor;
                     const words = newText.trim().split(/\s+/);
                     const currentWord = words[words.length - 1] || '';
+                    const wordForValidation = this.stripTrailingPunctuation(currentWord);
                     
                     // Start timing only if timer is null (first word after page load/clear/valid space)
                     // Timer should NOT reset when typing characters - it only resets when a valid word is added
@@ -795,8 +936,8 @@
                         this.currentWordStartTime = Date.now();
                     }
                     
-                    // Check if the current word is a valid prefix
-                    const prefixResult = this.trie.startsWith(currentWord.toLowerCase());
+                    // Check if the current word is a valid prefix (strip trailing punctuation for validation)
+                    const prefixResult = this.trie.startsWith(wordForValidation.toLowerCase());
                     if (prefixResult.count === 0) {
                         e.preventDefault();
                         this.playErrorSound(); // Play error sound for invalid character
@@ -862,16 +1003,23 @@
             }
 
             updatePrompt() {
+                if (this.prompts.length === 0) {
+                    // Prompts not loaded yet
+                    this.promptCounter.textContent = 'Loading questions...';
+                    this.promptText.textContent = 'Please wait while questions are loaded.';
+                    return;
+                }
+                
                 this.promptCounter.textContent = `Question ${this.currentPromptIndex + 1} of ${this.prompts.length}`;
-                this.promptText.textContent = this.prompts[this.currentPromptIndex];
+                this.promptText.textContent = this.prompts[this.currentPromptIndex] || 'No question available';
                 // Record trial start time when prompt is shown
                 this.trialStartTime = Date.now();
             }
 
             updateStats() {
-                const prefixResult = this.trie.startsWith(this.currentWord.toLowerCase());
+                const wordForValidation = this.stripTrailingPunctuation(this.currentWord);
+                const prefixResult = this.trie.startsWith(wordForValidation.toLowerCase());
                 this.matchingWordsEl.textContent = prefixResult.count;
-                this.currentWordEl.textContent = this.currentWord || '-';
             }
 
             updateDropdown() {
@@ -880,7 +1028,8 @@
                     return;
                 }
                 
-                const matchingWords = this.trie.getWordsWithPrefix(this.currentWord.toLowerCase(), 10);
+                const wordForValidation = this.stripTrailingPunctuation(this.currentWord);
+                const matchingWords = this.trie.getWordsWithPrefix(wordForValidation.toLowerCase(), 10);
                 
                 if (matchingWords.length === 0) {
                     this.hideDropdown();
@@ -920,7 +1069,10 @@
 
             updateSubmitButton() {
                 const words = this.currentText.trim().split(/\s+/).filter(word => word.length > 0);
-                const allValid = words.every(word => this.vocabulary.has(word.toLowerCase()));
+                const allValid = words.every(word => {
+                    const wordForValidation = this.stripTrailingPunctuation(word);
+                    return this.vocabulary.has(wordForValidation.toLowerCase());
+                });
                 this.submitBtn.disabled = !allValid || words.length === 0;
             }
 
@@ -1000,11 +1152,15 @@
 
             submitText() {
                 const words = this.currentText.trim().split(/\s+/).filter(word => word.length > 0);
-                const allValid = words.every(word => this.vocabulary.has(word.toLowerCase()));
+                const allValid = words.every(word => {
+                    const wordForValidation = this.stripTrailingPunctuation(word);
+                    return this.vocabulary.has(wordForValidation.toLowerCase());
+                });
                 
                 if (allValid && words.length > 0) {
                     // Add the current word being typed to the analysis if it exists
-                    if (this.currentWord && this.currentWord.length > 0 && this.vocabulary.has(this.currentWord.toLowerCase())) {
+                    const currentWordForValidation = this.currentWord ? this.stripTrailingPunctuation(this.currentWord) : '';
+                    if (this.currentWord && this.currentWord.length > 0 && this.vocabulary.has(currentWordForValidation.toLowerCase())) {
                         const efficiency = this.currentWordKeystrokes / this.currentWord.length;
                         
                         // Calculate latency for final word
@@ -1033,6 +1189,9 @@
                     // Save results for current prompt
                     const result = {
                         participantId: this.participantId,
+                        Experiment: this.EXPERIMENT_ID,
+                        vocabSize: this.vocabSize,
+                        questionListName: this.questionListName,
                         promptIndex: this.currentPromptIndex,
                         prompt: this.prompts[this.currentPromptIndex],
                         response: this.currentText,
@@ -1043,16 +1202,8 @@
                     };
                     this.results.push(result);
                     
-                    // Prepare data for server - include Experiment ID and vocab size
-                    // Server expects JSON array, not a single object
-                    const serverData = {
-                        ...result,
-                        Experiment: this.EXPERIMENT_ID,
-                        vocabSize: this.vocabSize
-                    };
-                    
                     // Send data to server as an array (server expects _json to be an array)
-                    this.sendDataToServer([serverData]);
+                    this.sendDataToServer([result]);
                     
                     console.log('=== PROMPT RESULT ===');
                     console.log(`Prompt ${this.currentPromptIndex + 1}: ${result.prompt}`);
