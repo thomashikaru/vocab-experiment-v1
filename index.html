@@ -135,8 +135,117 @@
             background: #0056b3;
         }
         
+        .instruction-screen {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            max-width: 600px;
+            margin: 50px auto;
+            display: none;
+        }
+        
+        .instruction-content {
+            margin-bottom: 30px;
+        }
+        
+        .instruction-content h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        .instruction-content ul {
+            list-style-type: disc;
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .instruction-content li {
+            margin-bottom: 10px;
+            line-height: 1.6;
+            color: #555;
+        }
+        
+        .instruction-button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+        }
+        
+        .instruction-button:hover {
+            background: #0056b3;
+        }
+        
         .experiment-screen {
             display: none;
+        }
+        
+        .debrief-screen {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            max-width: 600px;
+            margin: 50px auto;
+            display: none;
+        }
+        
+        .debrief-content {
+            margin-bottom: 30px;
+        }
+        
+        .debrief-content h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        .debrief-content p {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .debrief-textarea {
+            width: 100%;
+            padding: 15px;
+            font-size: 16px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-family: inherit;
+            min-height: 120px;
+            resize: vertical;
+            margin-bottom: 20px;
+        }
+        
+        .debrief-textarea:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+        
+        .debrief-button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+        }
+        
+        .debrief-button:hover {
+            background: #0056b3;
+        }
+        
+        .debrief-button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
         }
         
         .thank-you-screen {
@@ -347,12 +456,25 @@
         </div>
     </div>
     
+    <!-- Instruction Screen -->
+    <div class="instruction-screen" id="instructionScreen">
+        <h1>Instructions</h1>
+        <div class="instruction-content">
+            <ul>
+                <li>This study tests your ability to answer questions using only a limited set of words.</li>
+                <li>You won't be able to type words outside of the vocabulary, and you'll hear a buzzer if you try.</li>
+                <li>It's OK if you don't know the correct answer to the question; just make your best guess.</li>
+                <li>Just type as normally as possible. The dropdown menu will show which words are allowed. The dropdown menu is not clickable.</li>
+            </ul>
+        </div>
+        <button class="instruction-button" id="instructionContinueBtn">Continue to Experiment</button>
+    </div>
+    
     <!-- Experiment Screen -->
     <div class="container experiment-screen" id="experimentScreen">
         <h1>Vocabulary Constraint Experiment</h1>
         <p style="text-align: center; color: #666; margin-top: -20px; margin-bottom: 30px;">
-            How well can you answer questions using only a limited vocabulary?<br>
-            Instructions: For each prompt, type an answer to the question. The drop-down will show you which words are allowed. You do not need to select words from the drop-down - just keep typing or use backspace to delete characters or words. Turn your volume on to hear a buzzer sound when you try to type a word that's outside the allowed vocabulary. At first it might seem hard, but you might get used to it as the study goes on.
+            Please respond to the question below. Remember: it's OK if you don't know the correct answer; just make your best guess<br>
         </p>
         
         <div class="prompt-section">
@@ -387,6 +509,16 @@
             <strong>Word Analysis (redder color indicates greater slowdown):</strong>
             <div id="wordList"></div>
         </div>
+    </div>
+    
+    <!-- Debrief Screen -->
+    <div class="debrief-screen" id="debriefScreen">
+        <h1>Final Question</h1>
+        <div class="debrief-content">
+            <p>In the final round of this experiment, the allowed vocabulary is very small. If you could add up to 5 words to the vocabulary to make your job easier, what would they be?</p>
+            <textarea id="debriefResponse" class="debrief-textarea" placeholder="Please list up to 5 words you would add to the vocabulary..."></textarea>
+        </div>
+        <button class="debrief-button" id="debriefSubmitBtn">Next</button>
     </div>
     
     <!-- Thank You Screen -->
@@ -495,6 +627,11 @@
                 this.wordHistory = []; // Complete history of all words ever typed (for display)
                 this.wordId = 0; // Unique ID for each word to track in history
                 
+                // Comprehensive keystroke tracking (all keystrokes regardless of vocabulary constraints)
+                this.keystrokeHistory = ''; // String representation of all keystrokes
+                this.keystrokeLatencies = []; // Array of latencies in milliseconds (time since previous keystroke)
+                this.lastKeystrokeTime = null; // Timestamp of last keystroke for latency calculation
+                
                 // Prompt system
                 this.prompts = []; // Will be loaded from CSV
                 this.currentPromptIndex = 0;
@@ -513,6 +650,9 @@
                 
                 // Get question list name from URL parameter
                 this.questionListName = this.getQuestionListNameFromURL();
+                
+                // Check for debug mode from URL parameter
+                this.debugMode = this.getDebugModeFromURL();
                 
                 this.initializeElements();
                 this.setupEventListeners();
@@ -566,6 +706,20 @@
                 }
                 
                 return listParam;
+            }
+            
+            getDebugModeFromURL() {
+                // Get URL parameters
+                const urlParams = new URLSearchParams(window.location.search);
+                const debugParam = urlParams.get('debug');
+                
+                // Default to false if parameter is not provided
+                if (!debugParam) {
+                    return false;
+                }
+                
+                // Check if debug mode is enabled (accepts 'true', '1', 'yes', or any non-empty value)
+                return debugParam === 'true' || debugParam === '1' || debugParam === 'yes';
             }
             
             stripTrailingPunctuation(word) {
@@ -684,11 +838,16 @@
             initializeElements() {
                 // Consent screen elements
                 this.consentScreen = document.getElementById('consentScreen');
+                this.instructionScreen = document.getElementById('instructionScreen');
                 this.experimentScreen = document.getElementById('experimentScreen');
+                this.debriefScreen = document.getElementById('debriefScreen');
                 this.thankYouScreen = document.getElementById('thankYouScreen');
                 this.participantIdInput = document.getElementById('participantId');
                 this.consentCheckbox = document.getElementById('consentCheckbox');
                 this.consentSubmitBtn = document.getElementById('consentSubmitBtn');
+                this.instructionContinueBtn = document.getElementById('instructionContinueBtn');
+                this.debriefResponse = document.getElementById('debriefResponse');
+                this.debriefSubmitBtn = document.getElementById('debriefSubmitBtn');
                 
                 // Experiment elements
                 this.textInput = document.getElementById('textInput');
@@ -724,9 +883,25 @@
                     return;
                 }
                 
-                // Hide consent screen and show experiment
+                // In debug mode, show instructions (will show one prompt after)
+                if (this.debugMode) {
+                    console.log('DEBUG MODE: Showing instructions, then one prompt before debrief');
+                }
+                
+                // Hide consent screen and show instruction screen
                 this.consentScreen.style.display = 'none';
+                this.instructionScreen.style.display = 'block';
+            }
+            
+            startActualExperiment() {
+                // Hide instruction screen and show experiment
+                this.instructionScreen.style.display = 'none';
                 this.experimentScreen.style.display = 'block';
+                
+                // Reset keystroke tracking for first prompt
+                this.keystrokeHistory = '';
+                this.keystrokeLatencies = [];
+                this.lastKeystrokeTime = null;
                 
                 // Focus on the text input
                 this.textInput.focus();
@@ -849,6 +1024,13 @@
                 this.consentCheckbox.addEventListener('change', () => this.updateConsentButton());
                 this.consentSubmitBtn.addEventListener('click', () => this.startExperiment());
                 
+                // Instruction screen event listeners
+                this.instructionContinueBtn.addEventListener('click', () => this.startActualExperiment());
+                
+                // Debrief screen event listeners
+                this.debriefResponse.addEventListener('input', () => this.updateDebriefButton());
+                this.debriefSubmitBtn.addEventListener('click', () => this.submitDebrief());
+                
                 // Experiment event listeners
                 this.textInput.addEventListener('input', (e) => this.handleInput(e));
                 this.textInput.addEventListener('keydown', (e) => this.handleKeyDown(e));
@@ -858,6 +1040,34 @@
             }
 
             handleKeyDown(e) {
+                // Record keystroke FIRST, before any preventDefault() calls
+                // This ensures we capture all keystrokes regardless of whether they're blocked
+                const currentTime = Date.now();
+                const latency = this.lastKeystrokeTime !== null ? currentTime - this.lastKeystrokeTime : 0;
+                this.lastKeystrokeTime = currentTime;
+                
+                // Convert key to string representation
+                let keystrokeChar = '';
+                if (e.key === 'Backspace') {
+                    keystrokeChar = '\\b';
+                } else if (e.key === 'Enter') {
+                    keystrokeChar = '\\n';
+                } else if (e.key === 'Tab') {
+                    keystrokeChar = '\\t';
+                } else if (e.key === ' ') {
+                    keystrokeChar = ' '; // Space character
+                } else if (e.key.length === 1) {
+                    // Printable character
+                    keystrokeChar = e.key;
+                } else {
+                    // Special keys (ArrowLeft, ArrowRight, etc.) - use the key name
+                    keystrokeChar = `[${e.key}]`;
+                }
+                
+                // Add to keystroke history and latencies
+                this.keystrokeHistory += keystrokeChar;
+                this.keystrokeLatencies.push(latency);
+                
                 const cursorPos = this.textInput.selectionStart;
                 const textBeforeCursor = this.textInput.value.substring(0, cursorPos);
                 const textAfterCursor = this.textInput.value.substring(cursorPos);
@@ -1196,6 +1406,8 @@
                         prompt: this.prompts[this.currentPromptIndex],
                         response: this.currentText,
                         wordHistory: [...this.wordHistory], // Copy of word history
+                        keystrokeHistory: this.keystrokeHistory, // String of all keystrokes
+                        keystrokeLatencies: JSON.stringify(this.keystrokeLatencies), // JSON string of latency array
                         startTime: this.trialStartTime ? new Date(this.trialStartTime).toISOString() : null,
                         endTime: new Date(trialEndTime).toISOString(),
                         timestamp: new Date().toISOString()
@@ -1209,18 +1421,26 @@
                     console.log(`Prompt ${this.currentPromptIndex + 1}: ${result.prompt}`);
                     console.log(`Response: "${result.response}"`);
                     console.log(`Word Analysis:`, result.wordHistory);
+                    console.log(`Keystroke History: "${result.keystrokeHistory}"`);
+                    console.log(`Keystroke Latencies:`, result.keystrokeLatencies);
+                    console.log(`Keystroke Latencies (parsed):`, JSON.parse(result.keystrokeLatencies));
                     console.log('===================');
                     
                     // Move to next prompt or finish
                     this.currentPromptIndex++;
-                    if (this.currentPromptIndex < this.prompts.length) {
+                    
+                    // In debug mode, go to debrief after first prompt
+                    if (this.debugMode) {
+                        console.log('DEBUG MODE: Going to debrief after first prompt');
+                        this.showDebriefScreen();
+                    } else if (this.currentPromptIndex < this.prompts.length) {
                         this.updatePrompt();
                         this.clearText();
                     } else {
                         // All prompts completed
                         console.log('=== EXPERIMENT COMPLETED ===');
                         console.log('All Results:', this.results);
-                        this.showThankYouScreen();
+                        this.showDebriefScreen();
                     }
                 } else {
                     alert('Cannot submit: contains invalid words');
@@ -1236,6 +1456,12 @@
                 this.wordStack = [];
                 this.wordHistory = [];
                 this.wordId = 0;
+                
+                // Reset keystroke tracking for next prompt
+                this.keystrokeHistory = '';
+                this.keystrokeLatencies = [];
+                this.lastKeystrokeTime = null;
+                
                 this.hideDropdown();
                 this.updateStats();
                 this.updateSubmitButton();
@@ -1243,9 +1469,62 @@
                 this.textInput.focus();
             }
             
-            showThankYouScreen() {
+            showDebriefScreen() {
                 // Hide experiment screen
                 this.experimentScreen.style.display = 'none';
+                
+                // Show debrief screen
+                this.debriefScreen.style.display = 'block';
+                
+                // Focus on textarea
+                this.debriefResponse.focus();
+                
+                // Update button state
+                this.updateDebriefButton();
+            }
+            
+            updateDebriefButton() {
+                const hasResponse = this.debriefResponse.value.trim().length > 0;
+                this.debriefSubmitBtn.disabled = !hasResponse;
+            }
+            
+            submitDebrief() {
+                const debriefResponse = this.debriefResponse.value.trim();
+                
+                if (!debriefResponse) {
+                    alert('Please provide your response before continuing.');
+                    return;
+                }
+                
+                // Create debrief result
+                const debriefResult = {
+                    participantId: this.participantId,
+                    Experiment: this.EXPERIMENT_ID,
+                    vocabSize: this.vocabSize,
+                    questionListName: this.questionListName,
+                    promptIndex: 'debrief',
+                    prompt: 'In the final round of this experiment, the allowed vocabulary is very small. If you could add up to 5 words to the vocabulary to make your job easier, what would they be?',
+                    response: debriefResponse,
+                    wordHistory: [],
+                    startTime: new Date().toISOString(),
+                    endTime: new Date().toISOString(),
+                    timestamp: new Date().toISOString()
+                };
+                
+                // Send debrief to server
+                this.sendDataToServer([debriefResult]);
+                
+                console.log('=== DEBRIEF SUBMITTED ===');
+                console.log('Debrief Response:', debriefResponse);
+                console.log('===================');
+                
+                // Show thank you screen
+                this.showThankYouScreen();
+            }
+            
+            showThankYouScreen() {
+                // Hide debrief screen
+                this.debriefScreen.style.display = 'none';
                 
                 // Show thank you screen
                 this.thankYouScreen.style.display = 'block';
