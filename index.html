@@ -1078,6 +1078,76 @@
                 this.textInput.addEventListener('blur', () => this.hideDropdown());
                 this.submitBtn.addEventListener('click', () => this.submitText());
                 this.clearBtn.addEventListener('click', () => this.clearText());
+                
+                // Restrict cursor movement and editing - force linear typing only
+                this.textInput.addEventListener('keydown', (e) => this.restrictCursorMovement(e));
+                this.textInput.addEventListener('mousedown', (e) => this.preventMouseCursorMovement(e));
+                this.textInput.addEventListener('click', (e) => this.preventMouseCursorMovement(e));
+                this.textInput.addEventListener('select', (e) => this.forceCursorToEnd(e));
+                this.textInput.addEventListener('selectstart', (e) => this.forceCursorToEnd(e));
+            }
+            
+            restrictCursorMovement(e) {
+                // Block arrow keys
+                if (e.key === 'ArrowLeft' || e.key === 'ArrowRight' || 
+                    e.key === 'ArrowUp' || e.key === 'ArrowDown' ||
+                    e.key === 'Home' || e.key === 'End') {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return false;
+                }
+                
+                // Block modifier+backspace combinations (word/line deletion)
+                if (e.key === 'Backspace' && (e.altKey || e.metaKey || e.ctrlKey)) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return false;
+                }
+                
+                // Block other common editing shortcuts
+                // Ctrl/Cmd+A (select all) - we'll allow this but force cursor to end after
+                // Ctrl/Cmd+X, C, V (cut, copy, paste) - block cut/paste, allow copy
+                if (e.key === 'x' && (e.ctrlKey || e.metaKey)) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return false;
+                }
+                if (e.key === 'v' && (e.ctrlKey || e.metaKey)) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return false;
+                }
+                
+                // Block Delete key (forward delete)
+                if (e.key === 'Delete') {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return false;
+                }
+            }
+            
+            preventMouseCursorMovement(e) {
+                // Prevent mouse clicks from moving cursor - force cursor to end
+                e.preventDefault();
+                const textLength = this.textInput.value.length;
+                this.textInput.setSelectionRange(textLength, textLength);
+                this.textInput.focus();
+                return false;
+            }
+            
+            forceCursorToEnd(e) {
+                // Force cursor to always be at the end of the text
+                // Use setTimeout to ensure this runs after any selection changes
+                setTimeout(() => {
+                    const textLength = this.textInput.value.length;
+                    const currentStart = this.textInput.selectionStart;
+                    const currentEnd = this.textInput.selectionEnd;
+                    
+                    // Only force to end if cursor is not already at end
+                    if (currentStart !== textLength || currentEnd !== textLength) {
+                        this.textInput.setSelectionRange(textLength, textLength);
+                    }
+                }, 0);
             }
 
             handleKeyDown(e) {
@@ -1109,9 +1179,23 @@
                 this.keystrokeHistory += keystrokeChar;
                 this.keystrokeLatencies.push(latency);
                 
+                // Force cursor to end before processing - ensure linear typing
+                const textLength = this.textInput.value.length;
                 const cursorPos = this.textInput.selectionStart;
-                const textBeforeCursor = this.textInput.value.substring(0, cursorPos);
-                const textAfterCursor = this.textInput.value.substring(cursorPos);
+                
+                // If cursor is not at end, move it to end and ignore the keystroke
+                // (except for backspace, which we'll handle specially)
+                if (cursorPos !== textLength && e.key !== 'Backspace') {
+                    this.textInput.setSelectionRange(textLength, textLength);
+                    // Don't process the keystroke if cursor wasn't at end
+                    if (e.key.length === 1 || e.key === ' ') {
+                        e.preventDefault();
+                        return;
+                    }
+                }
+                
+                const textBeforeCursor = this.textInput.value.substring(0, textLength);
+                const textAfterCursor = '';
                 
                 // Handle space key first (before incrementing counter)
                 if (e.key === ' ') {
@@ -1150,8 +1234,8 @@
                         this.currentWordKeystrokes = 0;
                         this.currentWordStartTime = null;
                         
-                        this.textInput.value = textBeforeCursor + ' ' + textAfterCursor;
-                        this.textInput.setSelectionRange(cursorPos + 1, cursorPos + 1);
+                        this.textInput.value = textBeforeCursor + ' ';
+                        this.textInput.setSelectionRange(textLength + 1, textLength + 1);
                         this.handleInput({ target: this.textInput });
                         return;
                     }
@@ -1187,8 +1271,8 @@
                         this.currentWordKeystrokes = 0;
                         this.currentWordStartTime = null;
                         
-                        this.textInput.value = textBeforeCursor + ' ' + textAfterCursor;
-                        this.textInput.setSelectionRange(cursorPos + 1, cursorPos + 1);
+                        this.textInput.value = textBeforeCursor + ' ';
+                        this.textInput.setSelectionRange(textLength + 1, textLength + 1);
                         this.handleInput({ target: this.textInput });
                         // this.playSuccessSound(); // Play success sound for valid word completion (disabled)
                     } else {
@@ -1202,13 +1286,24 @@
                     this.currentWordKeystrokes++;
                 }
                 
-                // Handle backspace
+                // Handle backspace - only allow if cursor is at end
                 if (e.key === 'Backspace') {
+                    const currentCursorPos = this.textInput.selectionStart;
+                    const textLength = this.textInput.value.length;
+                    
+                    // Only allow backspace if cursor is at the end
+                    if (currentCursorPos !== textLength) {
+                        e.preventDefault();
+                        // Force cursor back to end
+                        this.textInput.setSelectionRange(textLength, textLength);
+                        return;
+                    }
+                    
                     // Decrement keystroke counter for backspace
                     if (this.currentWordKeystrokes > 0) {
                         this.currentWordKeystrokes--;
                     }
-                    return; // Allow backspace
+                    return; // Allow backspace at end
                 }
                 
                 // Handle other keys
@@ -1219,11 +1314,11 @@
                         if (this.currentWordStartTime === null) {
                             this.currentWordStartTime = Date.now();
                         }
-                        // Allow normal character input - don't prevent default
+                        // Allow normal character input - cursor is already at end
                         return;
                     }
                     
-                    const newText = textBeforeCursor + e.key + textAfterCursor;
+                    const newText = textBeforeCursor + e.key;
                     const words = newText.trim().split(/\s+/);
                     const currentWord = words[words.length - 1] || '';
                     const wordForValidation = this.stripTrailingPunctuation(currentWord);
@@ -1247,6 +1342,13 @@
             handleInput(e) {
                 const previousText = this.currentText;
                 this.currentText = e.target.value;
+                
+                // Force cursor to end after any input
+                const textLength = this.currentText.length;
+                setTimeout(() => {
+                    this.textInput.setSelectionRange(textLength, textLength);
+                }, 0);
+                
                 const words = this.currentText.trim().split(/\s+/);
                 this.currentWord = words[words.length - 1] || '';
                 
