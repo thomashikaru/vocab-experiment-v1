@@ -496,7 +496,7 @@
         </div>
         
         <div class="input-container">
-            <input type="text" id="textInput" placeholder="Start typing... (only vocabulary words allowed)">
+            <input type="text" id="textInput" placeholder="Start typing...">
             <div class="dropdown" id="dropdown"></div>
         </div>
         
@@ -664,7 +664,8 @@
             
             getVocabSizeFromURL() {
                 // Valid vocabulary sizes available in data/word_families
-                const validSizes = [250, 500, 1000, 2000, 4000, 8000, 16000];
+                // 0 means no vocabulary constraints
+                const validSizes = [0, 250, 500, 1000, 2000, 4000, 8000, 16000];
                 const defaultSize = 250;
                 
                 // Get URL parameters
@@ -883,6 +884,9 @@
                     return;
                 }
                 
+                // Update instructions based on vocab size
+                this.updateInstructions();
+                
                 // In debug mode, show instructions (will show one prompt after)
                 if (this.debugMode) {
                     console.log('DEBUG MODE: Showing instructions, then one prompt before debrief');
@@ -893,10 +897,40 @@
                 this.instructionScreen.style.display = 'block';
             }
             
+            updateInstructions() {
+                const instructionContent = document.querySelector('.instruction-content ul');
+                if (!instructionContent) return;
+                
+                if (this.vocabSize === 0) {
+                    // No vocabulary constraints
+                    instructionContent.innerHTML = `
+                        <li>This study tests your ability to answer questions without any vocabulary restrictions.</li>
+                        <li>You can type any words you want - there are no constraints on your vocabulary.</li>
+                        <li>It's OK if you don't know the correct answer to the question; just make your best guess.</li>
+                        <li>Type naturally and answer the questions as best you can.</li>
+                    `;
+                } else {
+                    // With vocabulary constraints
+                    instructionContent.innerHTML = `
+                        <li>This study tests your ability to answer questions using only a limited set of words.</li>
+                        <li>You won't be able to type words outside of the vocabulary, and you'll hear a buzzer if you try.</li>
+                        <li>It's OK if you don't know the correct answer to the question; just make your best guess.</li>
+                        <li>Type naturally rather than choosing words from the dropdown menu. The dropdown menu will show which words are allowed, but it is not clickable.</li>
+                    `;
+                }
+            }
+            
             startActualExperiment() {
                 // Hide instruction screen and show experiment
                 this.instructionScreen.style.display = 'none';
                 this.experimentScreen.style.display = 'block';
+                
+                // Update placeholder text based on vocab size
+                if (this.vocabSize === 0) {
+                    this.textInput.placeholder = 'Start typing... (no vocabulary constraints)';
+                } else {
+                    this.textInput.placeholder = 'Start typing... (only vocabulary words allowed)';
+                }
                 
                 // Reset keystroke tracking for first prompt
                 this.keystrokeHistory = '';
@@ -985,6 +1019,13 @@
             }
 
             async loadVocabulary() {
+                // If vocab size is 0, skip loading vocabulary (no constraints)
+                if (this.vocabSize === 0) {
+                    console.log('Vocab size is 0 - no vocabulary constraints will be enforced');
+                    this.vocabSizeEl.textContent = 'Unlimited';
+                    return;
+                }
+                
                 try {
                     console.log('Loading vocabulary...');
                     // Use vocab size from URL parameter (or default)
@@ -1079,6 +1120,43 @@
                     const currentWord = words[words.length - 1] || '';
                     const wordForValidation = this.stripTrailingPunctuation(currentWord);
                     
+                    // If vocab size is 0, always allow space and track word
+                    if (this.vocabSize === 0) {
+                        // Word completed - record efficiency (don't count the space)
+                        const efficiency = currentWord.length > 0 ? this.currentWordKeystrokes / currentWord.length : 0;
+                        
+                        // Calculate latency (time spent typing the word)
+                        const latency = this.currentWordStartTime ? 
+                            Date.now() - this.currentWordStartTime : 0;
+                        
+                        if (currentWord.length > 0) {
+                            const wordData = {
+                                id: this.wordId++,
+                                word: currentWord,
+                                keystrokes: this.currentWordKeystrokes,
+                                efficiency: efficiency,
+                                latency: latency,
+                                active: true
+                            };
+                            
+                            // Push onto stack (currently active words)
+                            this.wordStack.push(wordData);
+                            
+                            // Add to history (all words ever typed)
+                            this.wordHistory.push(wordData);
+                        }
+                        
+                        // Reset counter and timer for next word
+                        this.currentWordKeystrokes = 0;
+                        this.currentWordStartTime = null;
+                        
+                        this.textInput.value = textBeforeCursor + ' ' + textAfterCursor;
+                        this.textInput.setSelectionRange(cursorPos + 1, cursorPos + 1);
+                        this.handleInput({ target: this.textInput });
+                        return;
+                    }
+                    
+                    // With vocabulary constraints, validate word
                     if (this.vocabulary.has(wordForValidation.toLowerCase())) {
                         // Word completed successfully - record efficiency (don't count the space)
                         const efficiency = this.currentWordKeystrokes / currentWord.length;
@@ -1135,6 +1213,16 @@
                 
                 // Handle other keys
                 if (e.key.length === 1) {
+                    // If vocab size is 0, allow all characters without validation
+                    if (this.vocabSize === 0) {
+                        // Start timing only if timer is null (first word after page load/clear/valid space)
+                        if (this.currentWordStartTime === null) {
+                            this.currentWordStartTime = Date.now();
+                        }
+                        // Allow normal character input - don't prevent default
+                        return;
+                    }
+                    
                     const newText = textBeforeCursor + e.key + textAfterCursor;
                     const words = newText.trim().split(/\s+/);
                     const currentWord = words[words.length - 1] || '';
@@ -1227,12 +1315,24 @@
             }
 
             updateStats() {
+                // If vocab size is 0, show N/A for matching words
+                if (this.vocabSize === 0) {
+                    this.matchingWordsEl.textContent = 'N/A';
+                    return;
+                }
+                
                 const wordForValidation = this.stripTrailingPunctuation(this.currentWord);
                 const prefixResult = this.trie.startsWith(wordForValidation.toLowerCase());
                 this.matchingWordsEl.textContent = prefixResult.count;
             }
 
             updateDropdown() {
+                // If vocab size is 0, never show dropdown
+                if (this.vocabSize === 0) {
+                    this.hideDropdown();
+                    return;
+                }
+                
                 if (!this.currentWord) {
                     this.hideDropdown();
                     return;
@@ -1279,6 +1379,13 @@
 
             updateSubmitButton() {
                 const words = this.currentText.trim().split(/\s+/).filter(word => word.length > 0);
+                
+                // If vocab size is 0, allow submission if there's any text
+                if (this.vocabSize === 0) {
+                    this.submitBtn.disabled = words.length === 0;
+                    return;
+                }
+                
                 const allValid = words.every(word => {
                     const wordForValidation = this.stripTrailingPunctuation(word);
                     return this.vocabulary.has(wordForValidation.toLowerCase());
@@ -1362,15 +1469,21 @@
 
             submitText() {
                 const words = this.currentText.trim().split(/\s+/).filter(word => word.length > 0);
-                const allValid = words.every(word => {
-                    const wordForValidation = this.stripTrailingPunctuation(word);
-                    return this.vocabulary.has(wordForValidation.toLowerCase());
-                });
+                
+                // If vocab size is 0, skip validation
+                let allValid = true;
+                if (this.vocabSize !== 0) {
+                    allValid = words.every(word => {
+                        const wordForValidation = this.stripTrailingPunctuation(word);
+                        return this.vocabulary.has(wordForValidation.toLowerCase());
+                    });
+                }
                 
                 if (allValid && words.length > 0) {
                     // Add the current word being typed to the analysis if it exists
                     const currentWordForValidation = this.currentWord ? this.stripTrailingPunctuation(this.currentWord) : '';
-                    if (this.currentWord && this.currentWord.length > 0 && this.vocabulary.has(currentWordForValidation.toLowerCase())) {
+                    const isCurrentWordValid = this.vocabSize === 0 || (this.currentWord && this.currentWord.length > 0 && this.vocabulary.has(currentWordForValidation.toLowerCase()));
+                    if (this.currentWord && this.currentWord.length > 0 && isCurrentWordValid) {
                         const efficiency = this.currentWordKeystrokes / this.currentWord.length;
                         
                         // Calculate latency for final word
@@ -1461,6 +1574,13 @@
                 this.keystrokeHistory = '';
                 this.keystrokeLatencies = [];
                 this.lastKeystrokeTime = null;
+                
+                // Update placeholder text based on vocab size
+                if (this.vocabSize === 0) {
+                    this.textInput.placeholder = 'Start typing... (no vocabulary constraints)';
+                } else {
+                    this.textInput.placeholder = 'Start typing... (only vocabulary words allowed)';
+                }
                 
                 this.hideDropdown();
                 this.updateStats();
