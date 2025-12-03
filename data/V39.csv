@@ -1,0 +1,17 @@
+list_number,trial_number,response_ID,question_ID,vocab_size,questionNumber,questionType,questionText
+V39,1,why40_free,why40,0,40,why,Why is there so much salt in the ocean but not rivers?
+V39,2,ELI541_free,ELI541,0,41,ELI5,"How can our brains remember that we forgot something, but can't remember what we forgot?"
+V39,3,how42_free,how42,0,42,how,How do languages get new words?
+V39,4,explain39_free,explain39,0,39,explain,Explain Impressionist art in simple terms.
+V39,5,how46_4000,how46,4000,46,how,How do camels survive in the desert?
+V39,6,why44_4000,why44,4000,44,why,Why don't spiders get stuck in their own webs?
+V39,7,explain43_4000,explain43,4000,43,explain,Explain concussions in simple terms.
+V39,8,ELI545_4000,ELI545,4000,45,ELI5,How do ships anchor themselves in very deep waters?
+V39,9,how2_1000,how2,1000,2,how,How do birds fly?
+V39,10,why48_1000,why48,1000,48,why,Why are there 24 hours in a day?
+V39,11,explain47_1000,explain47,1000,47,explain,Explain the concept of sarcasm in simple terms.
+V39,12,ELI51_1000,ELI51,1000,1,ELI5,How after 5000 years of humanity surviving off of bread do we have so many people who are now allergic to gluten?
+V39,13,how6_250,how6,250,6,how,How are diamonds formed?
+V39,14,why4_250,why4,250,4,why,Why do we need sleep?
+V39,15,ELI55_250,ELI55,250,5,ELI5,"If diamonds can be created in a lab, why are we still paying so much for these jewelry stones?"
+V39,16,explain3_250,explain3,250,3,explain,Explain Universal Grammar in simple terms.

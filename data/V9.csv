@@ -1,0 +1,17 @@
+list_number,trial_number,response_ID,question_ID,vocab_size,questionNumber,questionType,questionText
+V9,1,explain9_free,explain9,0,9,explain,Explain the term checkmate in simple terms.
+V9,2,ELI511_free,ELI511,0,11,ELI5,Why aren't power lines buried underground so that people don't lose power during hurricanes?
+V9,3,why10_free,why10,0,10,why,Why did the dodo die out?
+V9,4,how12_free,how12,0,12,how,How do I make a cup of coffee?
+V9,5,why14_4000,why14,4000,14,why,Why do we itch?
+V9,6,how16_4000,how16,4000,16,how,How do you make a peanut butter sandwich?
+V9,7,explain13_4000,explain13,4000,13,explain,Explain divorce in simple terms.
+V9,8,ELI515_4000,ELI515,4000,15,ELI5,"If fruit is sweet to encourage animals to eat it and carry seeds away, why are lemons and limes sour?"
+V9,9,explain17_1000,explain17,1000,17,explain,Explain vaccines in simple terms.
+V9,10,why18_1000,why18,1000,18,why,Why do people do drugs?
+V9,11,ELI519_1000,ELI519,1000,19,ELI5,What did Edward Snowden actually reveal about the US Government?
+V9,12,how20_1000,how20,1000,20,how,How do you pick a lock?
+V9,13,why22_250,why22,250,22,why,Why do we hiccup?
+V9,14,ELI523_250,ELI523,250,23,ELI5,Why does the sun feel so warm despite being 93 million miles away?
+V9,15,how24_250,how24,250,24,how,How would you smuggle ham through airport security?
+V9,16,explain21_250,explain21,250,21,explain,Explain how the Fed controls the economy in simple terms.

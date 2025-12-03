@@ -1,0 +1,17 @@
+list_number,trial_number,response_ID,question_ID,vocab_size,questionNumber,questionType,questionText
+V2,1,how5_free,how5,0,5,how,How are cartoons made?
+V2,2,why3_free,why3,0,3,why,Why are there waves in the ocean?
+V2,3,explain2_free,explain2,0,2,explain,Explain amnesia in simple terms.
+V2,4,ELI54_free,ELI54,0,4,ELI5,Why do humans need to eat many different kinds of food to get their vitamins but large animals like cows only need grass to survive?
+V2,5,ELI58_4000,ELI58,4000,8,ELI5,"If there is no cellphone signal, how does the 'emergency calls only' mode work?"
+V2,6,explain6_4000,explain6,4000,6,explain,Explain evolution in simple terms.
+V2,7,how9_4000,how9,4000,9,how,How are icicles formed?
+V2,8,why7_4000,why7,4000,7,why,Why is human birth more difficult than for other animals?
+V2,9,how13_1000,how13,1000,13,how,How are broken bones fixed?
+V2,10,why11_1000,why11,1000,11,why,Why does it echo if we yell in a cave but not a regular room?
+V2,11,ELI512_1000,ELI512,1000,12,ELI5,Why does the sound 'Hoo' produce cold air but 'Haa' produces hot air?
+V2,12,explain10_1000,explain10,1000,10,explain,Explain the offsides rule in soccer in simple terms.
+V2,13,how17_250,how17,250,17,how,How do you tie shoelaces?
+V2,14,explain14_250,explain14,250,14,explain,Explain bankruptcy in simple terms.
+V2,15,ELI516_250,ELI516,250,16,ELI5,How come atomic bomb tests were conducted in the deserts of Nevada without any serious consequences to the environment and humans?
+V2,16,why15_250,why15,250,15,why,Why do fashions change?

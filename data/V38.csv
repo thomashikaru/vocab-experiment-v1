@@ -1,0 +1,17 @@
+list_number,trial_number,response_ID,question_ID,vocab_size,questionNumber,questionType,questionText
+V38,1,explain38_free,explain38,0,38,explain,Explain social networks in simple terms.
+V38,2,ELI540_free,ELI540,0,40,ELI5,"At a buffet, why is it safe to leave food out for hours?"
+V38,3,why39_free,why39,0,39,why,Why do people get married?
+V38,4,how41_free,how41,0,41,how,How do you remove salt from water?
+V38,5,how45_4000,how45,4000,45,how,How do fish breathe underwater?
+V38,6,why43_4000,why43,4000,43,why,Why do languages change?
+V38,7,explain42_4000,explain42,4000,42,explain,Explain credit cards in simple terms.
+V38,8,ELI544_4000,ELI544,4000,44,ELI5,Why do ships have circular windows rather than square ones?
+V38,9,how1_1000,how1,1000,1,how,How do rocket engines work?
+V38,10,ELI548_1000,ELI548,1000,48,ELI5,Why does a candle not create smoke when burning but lots of smoke when you blow it out?
+V38,11,why47_1000,why47,1000,47,why,Why do people overeat?
+V38,12,explain46_1000,explain46,1000,46,explain,Explain the concept of allergies in simple terms.
+V38,13,explain2_250,explain2,250,2,explain,Explain amnesia in simple terms.
+V38,14,ELI54_250,ELI54,250,4,ELI5,Why do humans need to eat many different kinds of food to get their vitamins but large animals like cows only need grass to survive?
+V38,15,how5_250,how5,250,5,how,How are cartoons made?
+V38,16,why3_250,why3,250,3,why,Why are there waves in the ocean?

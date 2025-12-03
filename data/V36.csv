@@ -1,0 +1,17 @@
+list_number,trial_number,response_ID,question_ID,vocab_size,questionNumber,questionType,questionText
+V36,1,why37_free,why37,0,37,why,Why do roses have thorns?
+V36,2,how39_free,how39,0,39,how,How do I escape from a maze?
+V36,3,ELI538_free,ELI538,0,38,ELI5,Why is children's shampoo 'tear free' while regular shampoo burns the eyes?
+V36,4,explain36_free,explain36,0,36,explain,Explain Pride and Prejudice in simple terms.
+V36,5,explain40_4000,explain40,4000,40,explain,Explain nihilism in simple terms.
+V36,6,why41_4000,why41,4000,41,why,Why are ambulances white?
+V36,7,how43_4000,how43,4000,43,how,How do I train for a marathon?
+V36,8,ELI542_4000,ELI542,4000,42,ELI5,Why does footage from the 70s look better than footage of the 90s?
+V36,9,why45_1000,why45,1000,45,why,Why are portholes round?
+V36,10,explain44_1000,explain44,1000,44,explain,Explain the concept of wetness in simple terms.
+V36,11,ELI546_1000,ELI546,1000,46,ELI5,What is a hedge fund?
+V36,12,how47_1000,how47,1000,47,how,How do you prevent the spread of a virus?
+V36,13,explain48_250,explain48,250,48,explain,Explain small talk in simple terms.
+V36,14,ELI52_250,ELI52,250,2,ELI5,How did we get to the point where laptops and smartphones are in the same price range?
+V36,15,why1_250,why1,250,1,why,Why does thunder make a noise?
+V36,16,how3_250,how3,250,3,how,How do ducks float?

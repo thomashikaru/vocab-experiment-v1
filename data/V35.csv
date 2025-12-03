@@ -1,0 +1,17 @@
+list_number,trial_number,response_ID,question_ID,vocab_size,questionNumber,questionType,questionText
+V35,1,how38_free,how38,0,38,how,How do I save someone who's choking?
+V35,2,why36_free,why36,0,36,why,Why is there disease in the world?
+V35,3,explain35_free,explain35,0,35,explain,Explain The Count of Monte Cristo in simple terms.
+V35,4,ELI537_free,ELI537,0,37,ELI5,"When a baby is born, how are their lungs instantly able to breathe air if they haven't been breathing air for 9 months?"
+V35,5,why40_4000,why40,4000,40,why,Why is there so much salt in the ocean but not rivers?
+V35,6,explain39_4000,explain39,4000,39,explain,Explain Impressionist art in simple terms.
+V35,7,ELI541_4000,ELI541,4000,41,ELI5,"How can our brains remember that we forgot something, but can't remember what we forgot?"
+V35,8,how42_4000,how42,4000,42,how,How do languages get new words?
+V35,9,ELI545_1000,ELI545,1000,45,ELI5,How do ships anchor themselves in very deep waters?
+V35,10,explain43_1000,explain43,1000,43,explain,Explain concussions in simple terms.
+V35,11,why44_1000,why44,1000,44,why,Why don't spiders get stuck in their own webs?
+V35,12,how46_1000,how46,1000,46,how,How do camels survive in the desert?
+V35,13,why48_250,why48,250,48,why,Why are there 24 hours in a day?
+V35,14,explain47_250,explain47,250,47,explain,Explain the concept of sarcasm in simple terms.
+V35,15,ELI51_250,ELI51,250,1,ELI5,How after 5000 years of humanity surviving off of bread do we have so many people who are now allergic to gluten?
+V35,16,how2_250,how2,250,2,how,How do birds fly?

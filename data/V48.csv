@@ -1,0 +1,17 @@
+list_number,trial_number,response_ID,question_ID,vocab_size,questionNumber,questionType,questionText
+V48,1,explain48_free,explain48,0,48,explain,Explain small talk in simple terms.
+V48,2,how3_free,how3,0,3,how,How do ducks float?
+V48,3,why1_free,why1,0,1,why,Why does thunder make a noise?
+V48,4,ELI52_free,ELI52,0,2,ELI5,How did we get to the point where laptops and smartphones are in the same price range?
+V48,5,why5_4000,why5,4000,5,why,Why do leaves change color in fall?
+V48,6,explain4_4000,explain4,4000,4,explain,Explain climate change in simple terms.
+V48,7,how7_4000,how7,4000,7,how,How does nuclear deterrence work?
+V48,8,ELI56_4000,ELI56,4000,6,ELI5,"How come you can be falling asleep watching TV, then wide awake when you go to bed five minutes later?"
+V48,9,explain8_1000,explain8,1000,8,explain,Explain machine learning in simple terms.
+V48,10,how11_1000,how11,1000,11,how,How are Nobel Prize laureates selected?
+V48,11,ELI510_1000,ELI510,1000,10,ELI5,"If ants love sugar, and bees make honey, why aren't bee hives constantly attacked by ants?"
+V48,12,why9_1000,why9,1000,9,why,Why are eggs egg-shaped?
+V48,13,how15_250,how15,250,15,how,How do you make a paper airplane?
+V48,14,explain12_250,explain12,250,12,explain,Explain sorting algorithms in simple terms.
+V48,15,why13_250,why13,250,13,why,Why are there so many countries in the world?
+V48,16,ELI514_250,ELI514,250,14,ELI5,"If bacteria die, where do their corpses go?"

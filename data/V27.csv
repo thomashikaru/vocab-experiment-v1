@@ -1,0 +1,17 @@
+list_number,trial_number,response_ID,question_ID,vocab_size,questionNumber,questionType,questionText
+V27,1,ELI529_free,ELI529,0,29,ELI5,"Caffeine has almost no calories, so how does it give the body energy?"
+V27,2,why28_free,why28,0,28,why,Why do people die?
+V27,3,explain27_free,explain27,0,27,explain,Explain genes in simple terms
+V27,4,how30_free,how30,0,30,how,How do I find a lost dog?
+V27,5,how34_4000,how34,4000,34,how,How do you play a guitar?
+V27,6,ELI533_4000,ELI533,4000,33,ELI5,"If I get my password wrong three times, I get locked out, so how are hackers able to try millions of password combinations?"
+V27,7,why32_4000,why32,4000,32,why,Why do fingers wrinkle in water?
+V27,8,explain31_4000,explain31,4000,31,explain,Explain homosexuality in simple terms.
+V27,9,why36_1000,why36,1000,36,why,Why is there disease in the world?
+V27,10,ELI537_1000,ELI537,1000,37,ELI5,"When a baby is born, how are their lungs instantly able to breathe air if they haven't been breathing air for 9 months?"
+V27,11,explain35_1000,explain35,1000,35,explain,Explain The Count of Monte Cristo in simple terms.
+V27,12,how38_1000,how38,1000,38,how,How do I save someone who's choking?
+V27,13,why40_250,why40,250,40,why,Why is there so much salt in the ocean but not rivers?
+V27,14,ELI541_250,ELI541,250,41,ELI5,"How can our brains remember that we forgot something, but can't remember what we forgot?"
+V27,15,explain39_250,explain39,250,39,explain,Explain Impressionist art in simple terms.
+V27,16,how42_250,how42,250,42,how,How do languages get new words?

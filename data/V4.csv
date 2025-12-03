@@ -1,0 +1,17 @@
+list_number,trial_number,response_ID,question_ID,vocab_size,questionNumber,questionType,questionText
+V4,1,explain4_free,explain4,0,4,explain,Explain climate change in simple terms.
+V4,2,why5_free,why5,0,5,why,Why do leaves change color in fall?
+V4,3,how7_free,how7,0,7,how,How does nuclear deterrence work?
+V4,4,ELI56_free,ELI56,0,6,ELI5,"How come you can be falling asleep watching TV, then wide awake when you go to bed five minutes later?"
+V4,5,how11_4000,how11,4000,11,how,How are Nobel Prize laureates selected?
+V4,6,why9_4000,why9,4000,9,why,Why are eggs egg-shaped?
+V4,7,explain8_4000,explain8,4000,8,explain,Explain machine learning in simple terms.
+V4,8,ELI510_4000,ELI510,4000,10,ELI5,"If ants love sugar, and bees make honey, why aren't bee hives constantly attacked by ants?"
+V4,9,why13_1000,why13,1000,13,why,Why are there so many countries in the world?
+V4,10,how15_1000,how15,1000,15,how,How do you make a paper airplane?
+V4,11,ELI514_1000,ELI514,1000,14,ELI5,"If bacteria die, where do their corpses go?"
+V4,12,explain12_1000,explain12,1000,12,explain,Explain sorting algorithms in simple terms.
+V4,13,ELI518_250,ELI518,250,18,ELI5,Why do bad smells like smoke and rotting food linger longer than good smells like flowers or perfume?
+V4,14,how19_250,how19,250,19,how,How do you rescue a cat from a tree?
+V4,15,explain16_250,explain16,250,16,explain,Explain cryptocurrency in simple terms.
+V4,16,why17_250,why17,250,17,why,Why do fridges hum?

@@ -1,0 +1,17 @@
+list_number,trial_number,response_ID,question_ID,vocab_size,questionNumber,questionType,questionText
+V6,1,why7_free,why7,0,7,why,Why is human birth more difficult than for other animals?
+V6,2,ELI58_free,ELI58,0,8,ELI5,"If there is no cellphone signal, how does the 'emergency calls only' mode work?"
+V6,3,how9_free,how9,0,9,how,How are icicles formed?
+V6,4,explain6_free,explain6,0,6,explain,Explain evolution in simple terms.
+V6,5,why11_4000,why11,4000,11,why,Why does it echo if we yell in a cave but not a regular room?
+V6,6,ELI512_4000,ELI512,4000,12,ELI5,Why does the sound 'Hoo' produce cold air but 'Haa' produces hot air?
+V6,7,explain10_4000,explain10,4000,10,explain,Explain the offsides rule in soccer in simple terms.
+V6,8,how13_4000,how13,4000,13,how,How are broken bones fixed?
+V6,9,ELI516_1000,ELI516,1000,16,ELI5,How come atomic bomb tests were conducted in the deserts of Nevada without any serious consequences to the environment and humans?
+V6,10,how17_1000,how17,1000,17,how,How do you tie shoelaces?
+V6,11,explain14_1000,explain14,1000,14,explain,Explain bankruptcy in simple terms.
+V6,12,why15_1000,why15,1000,15,why,Why do fashions change?
+V6,13,why19_250,why19,250,19,why,"Why do we shake our heads for ""no""?"
+V6,14,ELI520_250,ELI520,250,20,ELI5,Why after a good long cry can't we take a big deep breath without that huh-huh-huh tracheal contraction?
+V6,15,explain18_250,explain18,250,18,explain,Explain the stock market in simple terms.
+V6,16,how21_250,how21,250,21,how,How do I do a push-up?

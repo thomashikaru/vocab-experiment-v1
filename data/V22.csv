@@ -1,0 +1,17 @@
+list_number,trial_number,response_ID,question_ID,vocab_size,questionNumber,questionType,questionText
+V22,1,ELI524_free,ELI524,0,24,ELI5,"When toddlers speak gibberish, are they just making random sounds or are they attempting to speak?"
+V22,2,explain22_free,explain22,0,22,explain,Explain tariffs in simple terms.
+V22,3,why23_free,why23,0,23,why,Why are dogs loyal?
+V22,4,how25_free,how25,0,25,how,How do I reload printer paper?
+V22,5,ELI528_4000,ELI528,4000,28,ELI5,Why hasn't the speed record of the SR-71 plane been broken for 50 years?
+V22,6,how29_4000,how29,4000,29,how,How do I clean a teapot?
+V22,7,why27_4000,why27,4000,27,why,Why do people lie about small things?
+V22,8,explain26_4000,explain26,4000,26,explain,Explain the United Nations in simple terms.
+V22,9,how33_1000,how33,1000,33,how,How do I bake a tray of brownies?
+V22,10,why31_1000,why31,1000,31,why,Why does salt melt ice?
+V22,11,ELI532_1000,ELI532,1000,32,ELI5,How can an eagle see a rabbit in a field from a mile away?
+V22,12,explain30_1000,explain30,1000,30,explain,Explain depression in simple terms.
+V22,13,how37_250,how37,250,37,how,How can I haggle prices at a market effectively?
+V22,14,why35_250,why35,250,35,why,Why is the earth round?
+V22,15,explain34_250,explain34,250,34,explain,Explain hibernation in simple terms.
+V22,16,ELI536_250,ELI536,250,36,ELI5,"Why is it healthy to strain your heart through exercise, but unhealthy to strain it through stress, caffeine, or nicotine?"

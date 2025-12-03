@@ -1,0 +1,17 @@
+list_number,trial_number,response_ID,question_ID,vocab_size,questionNumber,questionType,questionText
+V46,1,why47_free,why47,0,47,why,Why do people overeat?
+V46,2,ELI548_free,ELI548,0,48,ELI5,Why does a candle not create smoke when burning but lots of smoke when you blow it out?
+V46,3,explain46_free,explain46,0,46,explain,Explain the concept of allergies in simple terms.
+V46,4,how1_free,how1,0,1,how,How do rocket engines work?
+V46,5,how5_4000,how5,4000,5,how,How are cartoons made?
+V46,6,why3_4000,why3,4000,3,why,Why are there waves in the ocean?
+V46,7,explain2_4000,explain2,4000,2,explain,Explain amnesia in simple terms.
+V46,8,ELI54_4000,ELI54,4000,4,ELI5,Why do humans need to eat many different kinds of food to get their vitamins but large animals like cows only need grass to survive?
+V46,9,ELI58_1000,ELI58,1000,8,ELI5,"If there is no cellphone signal, how does the 'emergency calls only' mode work?"
+V46,10,why7_1000,why7,1000,7,why,Why is human birth more difficult than for other animals?
+V46,11,how9_1000,how9,1000,9,how,How are icicles formed?
+V46,12,explain6_1000,explain6,1000,6,explain,Explain evolution in simple terms.
+V46,13,ELI512_250,ELI512,250,12,ELI5,Why does the sound 'Hoo' produce cold air but 'Haa' produces hot air?
+V46,14,why11_250,why11,250,11,why,Why does it echo if we yell in a cave but not a regular room?
+V46,15,explain10_250,explain10,250,10,explain,Explain the offsides rule in soccer in simple terms.
+V46,16,how13_250,how13,250,13,how,How are broken bones fixed?

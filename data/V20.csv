@@ -1,0 +1,17 @@
+list_number,trial_number,response_ID,question_ID,vocab_size,questionNumber,questionType,questionText
+V20,1,explain20_free,explain20,0,20,explain,Explain how the Fed creates money in simple terms.
+V20,2,ELI522_free,ELI522,0,22,ELI5,Why is the letter W called 'double U' when it is clearly 'double V'?
+V20,3,how23_free,how23,0,23,how,How do I disable my smoke alarm?
+V20,4,why21_free,why21,0,21,why,Why does Saturn have rings?
+V20,5,explain24_4000,explain24,4000,24,explain,Explain the immune system in simple terms.
+V20,6,ELI526_4000,ELI526,4000,26,ELI5,Why do some letters of the alphabet look totally different when written in uppercase and lowercase?
+V20,7,how27_4000,how27,4000,27,how,How do you prevent a sunburn?
+V20,8,why25_4000,why25,4000,25,why,Why are lemons sour?
+V20,9,explain28_1000,explain28,1000,28,explain,Explain a black hole in simple terms.
+V20,10,ELI530_1000,ELI530,1000,30,ELI5,Why does your body feel physically ill after experiencing emotional trauma?
+V20,11,how31_1000,how31,1000,31,how,How do I change a flat tire?
+V20,12,why29_1000,why29,1000,29,why,Why are human babies born so helpless?
+V20,13,ELI534_250,ELI534,250,34,ELI5,"If the Amazon Echo doesn't start processing audio until you say 'Alexa', how does it know when you say it?"
+V20,14,how35_250,how35,250,35,how,How is milk produced?
+V20,15,why33_250,why33,250,33,why,Why is sugar bad for you?
+V20,16,explain32_250,explain32,250,32,explain,Explain puberty in simple terms.

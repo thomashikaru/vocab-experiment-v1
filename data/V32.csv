@@ -1,0 +1,17 @@
+list_number,trial_number,response_ID,question_ID,vocab_size,questionNumber,questionType,questionText
+V32,1,ELI534_free,ELI534,0,34,ELI5,"If the Amazon Echo doesn't start processing audio until you say 'Alexa', how does it know when you say it?"
+V32,2,how35_free,how35,0,35,how,How is milk produced?
+V32,3,explain32_free,explain32,0,32,explain,Explain puberty in simple terms.
+V32,4,why33_free,why33,0,33,why,Why is sugar bad for you?
+V32,5,ELI538_4000,ELI538,4000,38,ELI5,Why is children's shampoo 'tear free' while regular shampoo burns the eyes?
+V32,6,why37_4000,why37,4000,37,why,Why do roses have thorns?
+V32,7,how39_4000,how39,4000,39,how,How do I escape from a maze?
+V32,8,explain36_4000,explain36,4000,36,explain,Explain Pride and Prejudice in simple terms.
+V32,9,why41_1000,why41,1000,41,why,Why are ambulances white?
+V32,10,explain40_1000,explain40,1000,40,explain,Explain nihilism in simple terms.
+V32,11,ELI542_1000,ELI542,1000,42,ELI5,Why does footage from the 70s look better than footage of the 90s?
+V32,12,how43_1000,how43,1000,43,how,How do I train for a marathon?
+V32,13,ELI546_250,ELI546,250,46,ELI5,What is a hedge fund?
+V32,14,how47_250,how47,250,47,how,How do you prevent the spread of a virus?
+V32,15,why45_250,why45,250,45,why,Why are portholes round?
+V32,16,explain44_250,explain44,250,44,explain,Explain the concept of wetness in simple terms.

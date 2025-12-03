@@ -1,0 +1,17 @@
+list_number,trial_number,response_ID,question_ID,vocab_size,questionNumber,questionType,questionText
+V24,1,ELI526_free,ELI526,0,26,ELI5,Why do some letters of the alphabet look totally different when written in uppercase and lowercase?
+V24,2,explain24_free,explain24,0,24,explain,Explain the immune system in simple terms.
+V24,3,why25_free,why25,0,25,why,Why are lemons sour?
+V24,4,how27_free,how27,0,27,how,How do you prevent a sunburn?
+V24,5,ELI530_4000,ELI530,4000,30,ELI5,Why does your body feel physically ill after experiencing emotional trauma?
+V24,6,explain28_4000,explain28,4000,28,explain,Explain a black hole in simple terms.
+V24,7,why29_4000,why29,4000,29,why,Why are human babies born so helpless?
+V24,8,how31_4000,how31,4000,31,how,How do I change a flat tire?
+V24,9,ELI534_1000,ELI534,1000,34,ELI5,"If the Amazon Echo doesn't start processing audio until you say 'Alexa', how does it know when you say it?"
+V24,10,explain32_1000,explain32,1000,32,explain,Explain puberty in simple terms.
+V24,11,how35_1000,how35,1000,35,how,How is milk produced?
+V24,12,why33_1000,why33,1000,33,why,Why is sugar bad for you?
+V24,13,ELI538_250,ELI538,250,38,ELI5,Why is children's shampoo 'tear free' while regular shampoo burns the eyes?
+V24,14,how39_250,how39,250,39,how,How do I escape from a maze?
+V24,15,explain36_250,explain36,250,36,explain,Explain Pride and Prejudice in simple terms.
+V24,16,why37_250,why37,250,37,why,Why do roses have thorns?

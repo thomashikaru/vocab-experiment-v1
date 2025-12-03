@@ -1,0 +1,17 @@
+list_number,trial_number,response_ID,question_ID,vocab_size,questionNumber,questionType,questionText
+V33,1,why34_free,why34,0,34,why,Why is the American flag red white and blue?
+V33,2,ELI535_free,ELI535,0,35,ELI5,Why do alcoholics die when they stop drinking?
+V33,3,how36_free,how36,0,36,how,How do I convince someone to buy a car?
+V33,4,explain33_free,explain33,0,33,explain,Explain the Holy Roman Empire in simple terms.
+V33,5,explain37_4000,explain37,4000,37,explain,Explain Wikipedia in simple terms.
+V33,6,ELI539_4000,ELI539,4000,39,ELI5,Why is finding patient zero in an epidemic so important?
+V33,7,how40_4000,how40,4000,40,how,How do parents name their babies?
+V33,8,why38_4000,why38,4000,38,why,Why do we have eyebrows?
+V33,9,how44_1000,how44,1000,44,how,How do I write a haiku?
+V33,10,explain41_1000,explain41,1000,41,explain,Explain consequentialism in simple terms.
+V33,11,ELI543_1000,ELI543,1000,43,ELI5,What is the difference between 4 wheel drive and all wheel drive?
+V33,12,why42_1000,why42,1000,42,why,Why does dessert come at the end of a meal?
+V33,13,why46_250,why46,250,46,why,Why are some people mean?
+V33,14,how48_250,how48,250,48,how,How do people find gold?
+V33,15,explain45_250,explain45,250,45,explain,Explain the concept of bravery in simple terms.
+V33,16,ELI547_250,ELI547,250,47,ELI5,Why does Down Syndrome cause a distinct face structure no matter the parents' genes?

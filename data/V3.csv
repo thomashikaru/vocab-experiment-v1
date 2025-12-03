@@ -1,0 +1,17 @@
+list_number,trial_number,response_ID,question_ID,vocab_size,questionNumber,questionType,questionText
+V3,1,how6_free,how6,0,6,how,How are diamonds formed?
+V3,2,why4_free,why4,0,4,why,Why do we need sleep?
+V3,3,explain3_free,explain3,0,3,explain,Explain Universal Grammar in simple terms.
+V3,4,ELI55_free,ELI55,0,5,ELI5,"If diamonds can be created in a lab, why are we still paying so much for these jewelry stones?"
+V3,5,explain7_4000,explain7,4000,7,explain,Explain Christianity in simple terms.
+V3,6,why8_4000,why8,4000,8,why,Why do people bite their nails?
+V3,7,ELI59_4000,ELI59,4000,9,ELI5,How do maggots get into a place like a freezer that's sealed air tight when it loses power?
+V3,8,how10_4000,how10,4000,10,how,How does Social Security work?
+V3,9,why12_1000,why12,1000,12,why,Why do some animals live longer than others?
+V3,10,how14_1000,how14,1000,14,how,How do I file a tax return?
+V3,11,ELI513_1000,ELI513,1000,13,ELI5,"Why are Mandarin and Cantonese considered dialects of Chinese but Spanish, Portuguese, Italian, and French are considered separate languages?"
+V3,12,explain11_1000,explain11,1000,11,explain,Explain the Napoleonic Wars in simple terms.
+V3,13,why16_250,why16,250,16,why,Why do people get divorced?
+V3,14,ELI517_250,ELI517,250,17,ELI5,How can NASA communicate with Voyager 1 which is 21 billion kilometers away?
+V3,15,how18_250,how18,250,18,how,How does a crime scene investigator use DNA to solve a murder?
+V3,16,explain15_250,explain15,250,15,explain,Explain kosher food in simple terms.

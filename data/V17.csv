@@ -1,0 +1,17 @@
+list_number,trial_number,response_ID,question_ID,vocab_size,questionNumber,questionType,questionText
+V17,1,ELI519_free,ELI519,0,19,ELI5,What did Edward Snowden actually reveal about the US Government?
+V17,2,how20_free,how20,0,20,how,How do you pick a lock?
+V17,3,explain17_free,explain17,0,17,explain,Explain vaccines in simple terms.
+V17,4,why18_free,why18,0,18,why,Why do people do drugs?
+V17,5,explain21_4000,explain21,4000,21,explain,Explain how the Fed controls the economy in simple terms.
+V17,6,ELI523_4000,ELI523,4000,23,ELI5,Why does the sun feel so warm despite being 93 million miles away?
+V17,7,why22_4000,why22,4000,22,why,Why do we hiccup?
+V17,8,how24_4000,how24,4000,24,how,How would you smuggle ham through airport security?
+V17,9,explain25_1000,explain25,1000,25,explain,Explain the placebo effect in simple terms.
+V17,10,why26_1000,why26,1000,26,why,Why are flowers colorful?
+V17,11,how28_1000,how28,1000,28,how,How do you stop your finger from bleeding?
+V17,12,ELI527_1000,ELI527,1000,27,ELI5,Why does hearing yourself speak with a few seconds of delay completely crash your brain?
+V17,13,ELI531_250,ELI531,250,31,ELI5,What is it about grapefruit that messes with pretty much every prescription medication?
+V17,14,how32_250,how32,250,32,how,How do I comfort a friend who is sad about a breakup?
+V17,15,why30_250,why30,250,30,why,Why do some people believe in god?
+V17,16,explain29_250,explain29,250,29,explain,Explain natural selection in simple terms.

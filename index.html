@@ -421,6 +421,80 @@
             border: 2px dashed #6c757d !important;
             color: #495057;
         }
+        
+        /* Custom Modal Styles */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-overlay.show {
+            display: flex;
+        }
+        
+        .modal-box {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            animation: modalFadeIn 0.3s ease-out;
+        }
+        
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        .modal-box h3 {
+            color: #333;
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+        
+        .modal-box p {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            font-size: 16px;
+        }
+        
+        .modal-button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 32px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .modal-button:hover {
+            background: #0056b3;
+        }
+        
+        .modal-button:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+        }
     </style>
 </head>
 <body>
@@ -536,6 +610,15 @@
             <p style="font-size: 16px; color: #666;">Your responses have been saved.</p>
         </div>
     </div>
+    
+    <!-- Custom Modal for Vocab Size Changes -->
+    <div class="modal-overlay" id="vocabChangeModal">
+        <div class="modal-box">
+            <h3>Vocabulary Size Changed</h3>
+            <p id="modalMessage"></p>
+            <button class="modal-button" id="modalOkButton">OK</button>
+        </div>
+    </div>
 
     <script>
         class TrieNode {
@@ -633,7 +716,7 @@
                 this.lastKeystrokeTime = null; // Timestamp of last keystroke for latency calculation
                 
                 // Prompt system
-                this.prompts = []; // Will be loaded from CSV
+                this.prompts = []; // Will be loaded from CSV, each prompt is {questionText, vocab_size}
                 this.currentPromptIndex = 0;
                 this.results = []; // Store results for each prompt
                 this.participantId = null; // Store participant ID
@@ -645,10 +728,11 @@
                 // Completion code (default value)
                 this.COMPLETION_CODE = "000000"; // Configure this variable as needed
                 
-                // Get vocab size from URL parameter, default to 250
-                this.vocabSize = this.getVocabSizeFromURL();
+                // Current vocab size (will be set per trial from CSV)
+                this.vocabSize = 0;
+                this.previousVocabSize = null; // Track previous vocab size to detect changes
                 
-                // Get question list name from URL parameter
+                // Get question list name from URL parameter (V1, V2, ..., V48)
                 this.questionListName = this.getQuestionListNameFromURL();
                 
                 // Check for debug mode from URL parameter
@@ -662,35 +746,13 @@
                 this.loadPromptsAndVocabulary();
             }
             
-            getVocabSizeFromURL() {
-                // Valid vocabulary sizes available in data/word_families
-                // 0 means no vocabulary constraints
-                const validSizes = [0, 250, 500, 1000, 2000, 4000, 8000, 16000];
-                const defaultSize = 250;
-                
-                // Get URL parameters
-                const urlParams = new URLSearchParams(window.location.search);
-                const vocabSizeParam = urlParams.get('vocabsize');
-                
-                if (!vocabSizeParam) {
-                    return defaultSize;
-                }
-                
-                // Parse and validate the vocab size
-                const vocabSize = parseInt(vocabSizeParam, 10);
-                
-                if (isNaN(vocabSize) || !validSizes.includes(vocabSize)) {
-                    console.warn(`Invalid vocab size "${vocabSizeParam}". Using default size ${defaultSize}. Valid sizes are: ${validSizes.join(', ')}`);
-                    return defaultSize;
-                }
-                
-                return vocabSize;
-            }
-            
             getQuestionListNameFromURL() {
-                // Valid question list names
-                const validLists = ['How', 'Why', 'ExplainSimple', 'RedditELI5'];
-                const defaultList = 'ExplainSimple';
+                // Valid question list names: V1, V2, ..., V48
+                const validLists = [];
+                for (let i = 1; i <= 48; i++) {
+                    validLists.push(`V${i}`);
+                }
+                const defaultList = 'V1';
                 
                 // Get URL parameters
                 const urlParams = new URLSearchParams(window.location.search);
@@ -700,13 +762,27 @@
                     return defaultList;
                 }
                 
+                // Normalize the list name (accept V1, v1, 1, etc.)
+                let normalizedParam = listParam.trim();
+                if (!normalizedParam.toUpperCase().startsWith('V')) {
+                    // If just a number, add 'V' prefix
+                    const num = parseInt(normalizedParam, 10);
+                    if (!isNaN(num) && num >= 1 && num <= 48) {
+                        normalizedParam = `V${num}`;
+                    } else {
+                        normalizedParam = listParam;
+                    }
+                } else {
+                    normalizedParam = normalizedParam.toUpperCase();
+                }
+                
                 // Validate the list name
-                if (!validLists.includes(listParam)) {
-                    console.warn(`Invalid question list "${listParam}". Using default list "${defaultList}". Valid lists are: ${validLists.join(', ')}`);
+                if (!validLists.includes(normalizedParam)) {
+                    console.warn(`Invalid question list "${listParam}". Using default list "${defaultList}". Valid lists are: V1-V48`);
                     return defaultList;
                 }
                 
-                return listParam;
+                return normalizedParam;
             }
             
             getDebugModeFromURL() {
@@ -741,7 +817,7 @@
             
             async loadPromptsFromCSV() {
                 try {
-                    const csvPath = `data/questions_${this.questionListName}.csv`;
+                    const csvPath = `data/${this.questionListName}.csv`;
                     console.log(`Loading prompts from: ${csvPath}`);
                     
                     const response = await fetch(csvPath);
@@ -756,13 +832,18 @@
                     const lines = csvText.trim().split('\n');
                     const headers = lines[0].split(',');
                     
-                    // Find the index of questionText column
+                    // Find the indices of questionText and vocab_size columns
                     const questionTextIndex = headers.indexOf('questionText');
+                    const vocabSizeIndex = headers.indexOf('vocab_size');
+                    
                     if (questionTextIndex === -1) {
                         throw new Error('questionText column not found in CSV');
                     }
+                    if (vocabSizeIndex === -1) {
+                        throw new Error('vocab_size column not found in CSV');
+                    }
                     
-                    // Extract questionText from each row (skip header)
+                    // Extract questionText and vocab_size from each row (skip header)
                     this.prompts = [];
                     for (let i = 1; i < lines.length; i++) {
                         const line = lines[i].trim();
@@ -770,14 +851,30 @@
                         
                         // Handle CSV parsing (account for commas in quoted fields)
                         const values = this.parseCSVLine(line);
-                        if (values.length > questionTextIndex) {
+                        if (values.length > questionTextIndex && values.length > vocabSizeIndex) {
                             let questionText = values[questionTextIndex].trim();
                             // Remove surrounding quotes if present
                             if (questionText.startsWith('"') && questionText.endsWith('"')) {
                                 questionText = questionText.slice(1, -1);
                             }
+                            
+                            let vocabSizeStr = values[vocabSizeIndex].trim();
+                            // Remove surrounding quotes if present
+                            if (vocabSizeStr.startsWith('"') && vocabSizeStr.endsWith('"')) {
+                                vocabSizeStr = vocabSizeStr.slice(1, -1);
+                            }
+                            
+                            // Parse vocab_size (should be a number, or "0" for "free")
+                            const vocabSize = parseInt(vocabSizeStr, 10);
+                            if (isNaN(vocabSize)) {
+                                console.warn(`Invalid vocab_size "${vocabSizeStr}" in row ${i + 1}, defaulting to 0`);
+                            }
+                            
                             if (questionText) {
-                                this.prompts.push(questionText);
+                                this.prompts.push({
+                                    questionText: questionText,
+                                    vocab_size: isNaN(vocabSize) ? 0 : vocabSize
+                                });
                             }
                         }
                     }
@@ -788,9 +885,9 @@
                         throw new Error('No prompts found in CSV file');
                     }
                     
-                    // Randomly shuffle the prompts so each user sees them in a different order
-                    this.prompts = this.shuffleArray(this.prompts);
-                    console.log('Prompts shuffled for randomized order');
+                    // Note: Prompts are already sorted by trial_number in the CSV, so we don't shuffle
+                    // This maintains the experimental design order
+                    console.log('Prompts loaded in CSV order (sorted by trial_number)');
                     
                     return true;
                 } catch (error) {
@@ -824,15 +921,12 @@
             }
             
             async loadPromptsAndVocabulary() {
-                // Load prompts first, then vocabulary, then initialize
+                // Load prompts first, then initialize first prompt
                 const promptsLoaded = await this.loadPromptsFromCSV();
                 
                 if (promptsLoaded) {
-                    // Update prompt display
+                    // Update prompt display and load vocabulary for first trial
                     this.updatePrompt();
-                    
-                    // Load vocabulary
-                    await this.loadVocabulary();
                 }
             }
 
@@ -862,6 +956,11 @@
                 this.promptCounter = document.getElementById('promptCounter');
                 this.promptText = document.getElementById('promptText');
                 this.completionCodeEl = document.getElementById('completionCode');
+                
+                // Modal elements
+                this.vocabChangeModal = document.getElementById('vocabChangeModal');
+                this.modalMessage = document.getElementById('modalMessage');
+                this.modalOkButton = document.getElementById('modalOkButton');
             }
 
             initializeAudio() {
@@ -901,23 +1000,15 @@
                 const instructionContent = document.querySelector('.instruction-content ul');
                 if (!instructionContent) return;
                 
-                if (this.vocabSize === 0) {
-                    // No vocabulary constraints
-                    instructionContent.innerHTML = `
-                        <li>This study tests your ability to answer questions without any vocabulary restrictions.</li>
-                        <li>You can type any words you want - there are no constraints on your vocabulary.</li>
-                        <li>It's OK if you don't know the correct answer to the question; just make your best guess.</li>
-                        <li>Type naturally and answer the questions as best you can.</li>
-                    `;
-                } else {
-                    // With vocabulary constraints
-                    instructionContent.innerHTML = `
-                        <li>This study tests your ability to answer questions using only a limited set of words.</li>
-                        <li>You won't be able to type words outside of the vocabulary, and you'll hear a buzzer if you try.</li>
-                        <li>It's OK if you don't know the correct answer to the question; just make your best guess.</li>
-                        <li>Type naturally rather than choosing words from the dropdown menu. The dropdown menu will show which words are allowed, but it is not clickable.</li>
-                    `;
-                }
+                // Generic instructions that don't depend on first trial vocab size
+                instructionContent.innerHTML = `
+                    <li>This study tests your ability to answer questions under increasingly restrictive vocabulary constraints.</li>
+                    <li>You will be asked to answer multiple questions. For each question, you may only use words from a limited vocabulary.</li>
+                    <li>You won't be able to type words outside of the allowed vocabulary, and you'll hear a buzzer if you try.</li>
+                    <li>It's OK if you don't know the correct answer to the question; just make your best guess.</li>
+                    <li>Type naturally rather than choosing words from the dropdown menu. The dropdown menu will show which words are allowed, but it is not clickable.</li>
+                    <li><strong>Note:</strong> The vocabulary size will change between questions, becoming more restrictive as the experiment progresses.</li>
+                `;
             }
             
             startActualExperiment() {
@@ -925,12 +1016,7 @@
                 this.instructionScreen.style.display = 'none';
                 this.experimentScreen.style.display = 'block';
                 
-                // Update placeholder text based on vocab size
-                if (this.vocabSize === 0) {
-                    this.textInput.placeholder = 'Start typing... (no vocabulary constraints)';
-                } else {
-                    this.textInput.placeholder = 'Start typing... (only vocabulary words allowed)';
-                }
+                // Placeholder will be set by updatePrompt() based on current trial's vocab_size
                 
                 // Reset keystroke tracking for first prompt
                 this.keystrokeHistory = '';
@@ -1018,18 +1104,22 @@
                 oscillator.stop(this.audioContext.currentTime + 0.15);
             }
 
-            async loadVocabulary() {
+            async loadVocabulary(vocabSize) {
+                // Clear existing vocabulary and trie
+                this.vocabulary.clear();
+                this.trie = new Trie();
+                
                 // If vocab size is 0, skip loading vocabulary (no constraints)
-                if (this.vocabSize === 0) {
+                if (vocabSize === 0) {
                     console.log('Vocab size is 0 - no vocabulary constraints will be enforced');
                     this.vocabSizeEl.textContent = 'Unlimited';
+                    this.vocabSize = 0;
                     return;
                 }
                 
                 try {
-                    console.log('Loading vocabulary...');
-                    // Use vocab size from URL parameter (or default)
-                    const vocabPath = `data/word_families/vocab_${this.vocabSize}/vocabulary_${this.vocabSize}.json`;
+                    console.log(`Loading vocabulary for vocab_size: ${vocabSize}...`);
+                    const vocabPath = `data/word_families/vocab_${vocabSize}/vocabulary_${vocabSize}.json`;
                     console.log(`Loading vocabulary from: ${vocabPath}`);
                     
                     const response = await fetch(vocabPath);
@@ -1050,8 +1140,9 @@
 
                     console.log(`Loaded ${words.length} words from vocabulary.json`);
                     console.log(`Added ${this.vocabulary.size} unique words to vocabulary`);
-                    console.log(`Seed vocabulary size: ${this.vocabSize} word families`);
-                    this.vocabSizeEl.textContent = this.vocabSize;
+                    console.log(`Seed vocabulary size: ${vocabSize} word families`);
+                    this.vocabSizeEl.textContent = vocabSize;
+                    this.vocabSize = vocabSize;
                     console.log('Vocabulary loading complete');
                 } catch (error) {
                     console.error('Error loading vocabulary:', error);
@@ -1085,6 +1176,21 @@
                 this.textInput.addEventListener('click', (e) => this.preventMouseCursorMovement(e));
                 this.textInput.addEventListener('select', (e) => this.forceCursorToEnd(e));
                 this.textInput.addEventListener('selectstart', (e) => this.forceCursorToEnd(e));
+                
+                // Modal event listeners
+                this.modalOkButton.addEventListener('click', () => this.hideVocabChangeModal());
+                this.vocabChangeModal.addEventListener('click', (e) => {
+                    // Close modal if clicking on overlay (but not the modal box itself)
+                    if (e.target === this.vocabChangeModal) {
+                        this.hideVocabChangeModal();
+                    }
+                });
+                // Allow closing modal with Escape key
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && this.vocabChangeModal.classList.contains('show')) {
+                        this.hideVocabChangeModal();
+                    }
+                });
             }
             
             restrictCursorMovement(e) {
@@ -1402,7 +1508,7 @@
                 }
             }
 
-            updatePrompt() {
+            async updatePrompt() {
                 if (this.prompts.length === 0) {
                     // Prompts not loaded yet
                     this.promptCounter.textContent = 'Loading questions...';
@@ -1410,8 +1516,42 @@
                     return;
                 }
                 
+                const currentPrompt = this.prompts[this.currentPromptIndex];
+                if (!currentPrompt) {
+                    this.promptCounter.textContent = 'No question available';
+                    this.promptText.textContent = 'No question available';
+                    return;
+                }
+                
                 this.promptCounter.textContent = `Question ${this.currentPromptIndex + 1} of ${this.prompts.length}`;
-                this.promptText.textContent = this.prompts[this.currentPromptIndex] || 'No question available';
+                this.promptText.textContent = currentPrompt.questionText;
+                
+                // Check if vocab_size changed from previous trial
+                const newVocabSize = currentPrompt.vocab_size;
+                if (this.previousVocabSize !== null && this.previousVocabSize !== newVocabSize) {
+                    // Show custom modal about vocab size change
+                    let message = '';
+                    if (newVocabSize === 0) {
+                        message = 'The allowed vocabulary is now unlimited (no restrictions).';
+                    } else {
+                        message = `The allowed vocabulary is now limited to only the ${newVocabSize.toLocaleString()} most common words.`;
+                    }
+                    this.showVocabChangeModal(message);
+                }
+                
+                // Load vocabulary for this trial's vocab_size
+                await this.loadVocabulary(newVocabSize);
+                
+                // Update previous vocab size for next comparison
+                this.previousVocabSize = newVocabSize;
+                
+                // Update placeholder text based on vocab size
+                if (this.vocabSize === 0) {
+                    this.textInput.placeholder = 'Start typing... (no vocabulary constraints)';
+                } else {
+                    this.textInput.placeholder = 'Start typing... (only vocabulary words allowed)';
+                }
+                
                 // Record trial start time when prompt is shown
                 this.trialStartTime = Date.now();
             }
@@ -1569,7 +1709,7 @@
             }
 
 
-            submitText() {
+            async submitText() {
                 const words = this.currentText.trim().split(/\s+/).filter(word => word.length > 0);
                 
                 // If vocab size is 0, skip validation
@@ -1612,13 +1752,14 @@
                     const trialEndTime = Date.now();
                     
                     // Save results for current prompt
+                    const currentPrompt = this.prompts[this.currentPromptIndex];
                     const result = {
                         participantId: this.participantId,
                         Experiment: this.EXPERIMENT_ID,
-                        vocabSize: this.vocabSize,
+                        vocabSize: currentPrompt ? currentPrompt.vocab_size : this.vocabSize,
                         questionListName: this.questionListName,
                         promptIndex: this.currentPromptIndex,
-                        prompt: this.prompts[this.currentPromptIndex],
+                        prompt: currentPrompt ? currentPrompt.questionText : 'No question available',
                         response: this.currentText,
                         wordHistory: [...this.wordHistory], // Copy of word history
                         keystrokeHistory: this.keystrokeHistory, // String of all keystrokes
@@ -1634,6 +1775,7 @@
                     
                     console.log('=== PROMPT RESULT ===');
                     console.log(`Prompt ${this.currentPromptIndex + 1}: ${result.prompt}`);
+                    console.log(`Vocab Size: ${result.vocabSize}`);
                     console.log(`Response: "${result.response}"`);
                     console.log(`Word Analysis:`, result.wordHistory);
                     console.log(`Keystroke History: "${result.keystrokeHistory}"`);
@@ -1649,7 +1791,7 @@
                         console.log('DEBUG MODE: Going to debrief after first prompt');
                         this.showDebriefScreen();
                     } else if (this.currentPromptIndex < this.prompts.length) {
-                        this.updatePrompt();
+                        await this.updatePrompt();
                         this.clearText();
                     } else {
                         // All prompts completed
@@ -1677,12 +1819,7 @@
                 this.keystrokeLatencies = [];
                 this.lastKeystrokeTime = null;
                 
-                // Update placeholder text based on vocab size
-                if (this.vocabSize === 0) {
-                    this.textInput.placeholder = 'Start typing... (no vocabulary constraints)';
-                } else {
-                    this.textInput.placeholder = 'Start typing... (only vocabulary words allowed)';
-                }
+                // Placeholder will be set by updatePrompt() based on current trial's vocab_size
                 
                 this.hideDropdown();
                 this.updateStats();
@@ -1719,10 +1856,12 @@
                 }
                 
                 // Create debrief result
+                // Use the vocab_size from the last prompt (which should be the smallest)
+                const lastPrompt = this.prompts.length > 0 ? this.prompts[this.prompts.length - 1] : null;
                 const debriefResult = {
                     participantId: this.participantId,
                     Experiment: this.EXPERIMENT_ID,
-                    vocabSize: this.vocabSize,
+                    vocabSize: lastPrompt ? lastPrompt.vocab_size : this.vocabSize,
                     questionListName: this.questionListName,
                     promptIndex: 'debrief',
                     prompt: 'In the final round of this experiment, the allowed vocabulary is very small. If you could add up to 5 words to the vocabulary to make your job easier, what would they be?',
@@ -1760,6 +1899,21 @@
                 this.results = [];
                 this.updatePrompt();
                 this.clearText();
+            }
+            
+            showVocabChangeModal(message) {
+                this.modalMessage.textContent = message;
+                this.vocabChangeModal.classList.add('show');
+                // Focus on the OK button for accessibility
+                this.modalOkButton.focus();
+            }
+            
+            hideVocabChangeModal() {
+                this.vocabChangeModal.classList.remove('show');
+                // Return focus to text input if experiment screen is visible
+                if (this.experimentScreen.style.display !== 'none') {
+                    this.textInput.focus();
+                }
             }
         }
 

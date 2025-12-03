@@ -1,0 +1,17 @@
+list_number,trial_number,response_ID,question_ID,vocab_size,questionNumber,questionType,questionText
+V28,1,explain28_free,explain28,0,28,explain,Explain a black hole in simple terms.
+V28,2,ELI530_free,ELI530,0,30,ELI5,Why does your body feel physically ill after experiencing emotional trauma?
+V28,3,how31_free,how31,0,31,how,How do I change a flat tire?
+V28,4,why29_free,why29,0,29,why,Why are human babies born so helpless?
+V28,5,explain32_4000,explain32,4000,32,explain,Explain puberty in simple terms.
+V28,6,how35_4000,how35,4000,35,how,How is milk produced?
+V28,7,why33_4000,why33,4000,33,why,Why is sugar bad for you?
+V28,8,ELI534_4000,ELI534,4000,34,ELI5,"If the Amazon Echo doesn't start processing audio until you say 'Alexa', how does it know when you say it?"
+V28,9,ELI538_1000,ELI538,1000,38,ELI5,Why is children's shampoo 'tear free' while regular shampoo burns the eyes?
+V28,10,why37_1000,why37,1000,37,why,Why do roses have thorns?
+V28,11,explain36_1000,explain36,1000,36,explain,Explain Pride and Prejudice in simple terms.
+V28,12,how39_1000,how39,1000,39,how,How do I escape from a maze?
+V28,13,explain40_250,explain40,250,40,explain,Explain nihilism in simple terms.
+V28,14,why41_250,why41,250,41,why,Why are ambulances white?
+V28,15,how43_250,how43,250,43,how,How do I train for a marathon?
+V28,16,ELI542_250,ELI542,250,42,ELI5,Why does footage from the 70s look better than footage of the 90s?

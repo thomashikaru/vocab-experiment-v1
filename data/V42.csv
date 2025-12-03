@@ -1,0 +1,17 @@
+list_number,trial_number,response_ID,question_ID,vocab_size,questionNumber,questionType,questionText
+V42,1,why43_free,why43,0,43,why,Why do languages change?
+V42,2,how45_free,how45,0,45,how,How do fish breathe underwater?
+V42,3,ELI544_free,ELI544,0,44,ELI5,Why do ships have circular windows rather than square ones?
+V42,4,explain42_free,explain42,0,42,explain,Explain credit cards in simple terms.
+V42,5,explain46_4000,explain46,4000,46,explain,Explain the concept of allergies in simple terms.
+V42,6,ELI548_4000,ELI548,4000,48,ELI5,Why does a candle not create smoke when burning but lots of smoke when you blow it out?
+V42,7,how1_4000,how1,4000,1,how,How do rocket engines work?
+V42,8,why47_4000,why47,4000,47,why,Why do people overeat?
+V42,9,how5_1000,how5,1000,5,how,How are cartoons made?
+V42,10,ELI54_1000,ELI54,1000,4,ELI5,Why do humans need to eat many different kinds of food to get their vitamins but large animals like cows only need grass to survive?
+V42,11,explain2_1000,explain2,1000,2,explain,Explain amnesia in simple terms.
+V42,12,why3_1000,why3,1000,3,why,Why are there waves in the ocean?
+V42,13,how9_250,how9,250,9,how,How are icicles formed?
+V42,14,why7_250,why7,250,7,why,Why is human birth more difficult than for other animals?
+V42,15,explain6_250,explain6,250,6,explain,Explain evolution in simple terms.
+V42,16,ELI58_250,ELI58,250,8,ELI5,"If there is no cellphone signal, how does the 'emergency calls only' mode work?"

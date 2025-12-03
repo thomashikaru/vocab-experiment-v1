@@ -1,0 +1,17 @@
+list_number,trial_number,response_ID,question_ID,vocab_size,questionNumber,questionType,questionText
+V11,1,how14_free,how14,0,14,how,How do I file a tax return?
+V11,2,why12_free,why12,0,12,why,Why do some animals live longer than others?
+V11,3,explain11_free,explain11,0,11,explain,Explain the Napoleonic Wars in simple terms.
+V11,4,ELI513_free,ELI513,0,13,ELI5,"Why are Mandarin and Cantonese considered dialects of Chinese but Spanish, Portuguese, Italian, and French are considered separate languages?"
+V11,5,why16_4000,why16,4000,16,why,Why do people get divorced?
+V11,6,explain15_4000,explain15,4000,15,explain,Explain kosher food in simple terms.
+V11,7,ELI517_4000,ELI517,4000,17,ELI5,How can NASA communicate with Voyager 1 which is 21 billion kilometers away?
+V11,8,how18_4000,how18,4000,18,how,How does a crime scene investigator use DNA to solve a murder?
+V11,9,explain19_1000,explain19,1000,19,explain,Explain what banks do in simple terms.
+V11,10,why20_1000,why20,1000,20,why,Why are most clocks round?
+V11,11,how22_1000,how22,1000,22,how,How does a combination lock work?
+V11,12,ELI521_1000,ELI521,1000,21,ELI5,How can nothing be faster than light?
+V11,13,why24_250,why24,250,24,why,Why does tickling make us laugh?
+V11,14,ELI525_250,ELI525,250,25,ELI5,Why do some animals spend so much time doing nothing?
+V11,15,how26_250,how26,250,26,how,How do I make schnitzel?
+V11,16,explain23_250,explain23,250,23,explain,Explain the International Space Station in simple terms.

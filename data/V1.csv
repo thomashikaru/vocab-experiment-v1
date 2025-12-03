@@ -1,0 +1,17 @@
+list_number,trial_number,response_ID,question_ID,vocab_size,questionNumber,questionType,questionText
+V1,1,why2_free,why2,0,2,why,Why are there so many languages in the world?
+V1,2,ELI53_free,ELI53,0,3,ELI5,"Why can people walk many miles without discomfort, but when they stand for more than 15 minutes or so, they get uncomfortable?"
+V1,3,how4_free,how4,0,4,how,How are books printed?
+V1,4,explain1_free,explain1,0,1,explain,Explain inflation in simple terms.
+V1,5,how8_4000,how8,4000,8,how,How do hurricanes form?
+V1,6,ELI57_4000,ELI57,4000,7,ELI5,"Do donated organs age according to the donor's age, or do they adapt to the age of the new body?"
+V1,7,why6_4000,why6,4000,6,why,Why do we dream?
+V1,8,explain5_4000,explain5,4000,5,explain,Explain the Electoral College in simple terms.
+V1,9,explain9_1000,explain9,1000,9,explain,Explain the term checkmate in simple terms.
+V1,10,why10_1000,why10,1000,10,why,Why did the dodo die out?
+V1,11,ELI511_1000,ELI511,1000,11,ELI5,Why aren't power lines buried underground so that people don't lose power during hurricanes?
+V1,12,how12_1000,how12,1000,12,how,How do I make a cup of coffee?
+V1,13,explain13_250,explain13,250,13,explain,Explain divorce in simple terms.
+V1,14,how16_250,how16,250,16,how,How do you make a peanut butter sandwich?
+V1,15,why14_250,why14,250,14,why,Why do we itch?
+V1,16,ELI515_250,ELI515,250,15,ELI5,"If fruit is sweet to encourage animals to eat it and carry seeds away, why are lemons and limes sour?"

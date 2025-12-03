@@ -1,0 +1,17 @@
+list_number,trial_number,response_ID,question_ID,vocab_size,questionNumber,questionType,questionText
+V45,1,ELI547_free,ELI547,0,47,ELI5,Why does Down Syndrome cause a distinct face structure no matter the parents' genes?
+V45,2,explain45_free,explain45,0,45,explain,Explain the concept of bravery in simple terms.
+V45,3,how48_free,how48,0,48,how,How do people find gold?
+V45,4,why46_free,why46,0,46,why,Why are some people mean?
+V45,5,explain1_4000,explain1,4000,1,explain,Explain inflation in simple terms.
+V45,6,how4_4000,how4,4000,4,how,How are books printed?
+V45,7,ELI53_4000,ELI53,4000,3,ELI5,"Why can people walk many miles without discomfort, but when they stand for more than 15 minutes or so, they get uncomfortable?"
+V45,8,why2_4000,why2,4000,2,why,Why are there so many languages in the world?
+V45,9,ELI57_1000,ELI57,1000,7,ELI5,"Do donated organs age according to the donor's age, or do they adapt to the age of the new body?"
+V45,10,explain5_1000,explain5,1000,5,explain,Explain the Electoral College in simple terms.
+V45,11,how8_1000,how8,1000,8,how,How do hurricanes form?
+V45,12,why6_1000,why6,1000,6,why,Why do we dream?
+V45,13,explain9_250,explain9,250,9,explain,Explain the term checkmate in simple terms.
+V45,14,how12_250,how12,250,12,how,How do I make a cup of coffee?
+V45,15,why10_250,why10,250,10,why,Why did the dodo die out?
+V45,16,ELI511_250,ELI511,250,11,ELI5,Why aren't power lines buried underground so that people don't lose power during hurricanes?

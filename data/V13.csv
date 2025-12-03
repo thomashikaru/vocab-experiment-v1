@@ -1,0 +1,17 @@
+list_number,trial_number,response_ID,question_ID,vocab_size,questionNumber,questionType,questionText
+V13,1,explain13_free,explain13,0,13,explain,Explain divorce in simple terms.
+V13,2,ELI515_free,ELI515,0,15,ELI5,"If fruit is sweet to encourage animals to eat it and carry seeds away, why are lemons and limes sour?"
+V13,3,how16_free,how16,0,16,how,How do you make a peanut butter sandwich?
+V13,4,why14_free,why14,0,14,why,Why do we itch?
+V13,5,explain17_4000,explain17,4000,17,explain,Explain vaccines in simple terms.
+V13,6,ELI519_4000,ELI519,4000,19,ELI5,What did Edward Snowden actually reveal about the US Government?
+V13,7,why18_4000,why18,4000,18,why,Why do people do drugs?
+V13,8,how20_4000,how20,4000,20,how,How do you pick a lock?
+V13,9,how24_1000,how24,1000,24,how,How would you smuggle ham through airport security?
+V13,10,why22_1000,why22,1000,22,why,Why do we hiccup?
+V13,11,ELI523_1000,ELI523,1000,23,ELI5,Why does the sun feel so warm despite being 93 million miles away?
+V13,12,explain21_1000,explain21,1000,21,explain,Explain how the Fed controls the economy in simple terms.
+V13,13,why26_250,why26,250,26,why,Why are flowers colorful?
+V13,14,how28_250,how28,250,28,how,How do you stop your finger from bleeding?
+V13,15,ELI527_250,ELI527,250,27,ELI5,Why does hearing yourself speak with a few seconds of delay completely crash your brain?
+V13,16,explain25_250,explain25,250,25,explain,Explain the placebo effect in simple terms.

@@ -1,0 +1,17 @@
+list_number,trial_number,response_ID,question_ID,vocab_size,questionNumber,questionType,questionText
+V26,1,why27_free,why27,0,27,why,Why do people lie about small things?
+V26,2,how29_free,how29,0,29,how,How do I clean a teapot?
+V26,3,ELI528_free,ELI528,0,28,ELI5,Why hasn't the speed record of the SR-71 plane been broken for 50 years?
+V26,4,explain26_free,explain26,0,26,explain,Explain the United Nations in simple terms.
+V26,5,explain30_4000,explain30,4000,30,explain,Explain depression in simple terms.
+V26,6,ELI532_4000,ELI532,4000,32,ELI5,How can an eagle see a rabbit in a field from a mile away?
+V26,7,how33_4000,how33,4000,33,how,How do I bake a tray of brownies?
+V26,8,why31_4000,why31,4000,31,why,Why does salt melt ice?
+V26,9,why35_1000,why35,1000,35,why,Why is the earth round?
+V26,10,how37_1000,how37,1000,37,how,How can I haggle prices at a market effectively?
+V26,11,explain34_1000,explain34,1000,34,explain,Explain hibernation in simple terms.
+V26,12,ELI536_1000,ELI536,1000,36,ELI5,"Why is it healthy to strain your heart through exercise, but unhealthy to strain it through stress, caffeine, or nicotine?"
+V26,13,explain38_250,explain38,250,38,explain,Explain social networks in simple terms.
+V26,14,why39_250,why39,250,39,why,Why do people get married?
+V26,15,ELI540_250,ELI540,250,40,ELI5,"At a buffet, why is it safe to leave food out for hours?"
+V26,16,how41_250,how41,250,41,how,How do you remove salt from water?

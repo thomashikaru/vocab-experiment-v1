@@ -1,0 +1,17 @@
+list_number,trial_number,response_ID,question_ID,vocab_size,questionNumber,questionType,questionText
+V12,1,why13_free,why13,0,13,why,Why are there so many countries in the world?
+V12,2,ELI514_free,ELI514,0,14,ELI5,"If bacteria die, where do their corpses go?"
+V12,3,explain12_free,explain12,0,12,explain,Explain sorting algorithms in simple terms.
+V12,4,how15_free,how15,0,15,how,How do you make a paper airplane?
+V12,5,explain16_4000,explain16,4000,16,explain,Explain cryptocurrency in simple terms.
+V12,6,why17_4000,why17,4000,17,why,Why do fridges hum?
+V12,7,ELI518_4000,ELI518,4000,18,ELI5,Why do bad smells like smoke and rotting food linger longer than good smells like flowers or perfume?
+V12,8,how19_4000,how19,4000,19,how,How do you rescue a cat from a tree?
+V12,9,why21_1000,why21,1000,21,why,Why does Saturn have rings?
+V12,10,how23_1000,how23,1000,23,how,How do I disable my smoke alarm?
+V12,11,ELI522_1000,ELI522,1000,22,ELI5,Why is the letter W called 'double U' when it is clearly 'double V'?
+V12,12,explain20_1000,explain20,1000,20,explain,Explain how the Fed creates money in simple terms.
+V12,13,ELI526_250,ELI526,250,26,ELI5,Why do some letters of the alphabet look totally different when written in uppercase and lowercase?
+V12,14,why25_250,why25,250,25,why,Why are lemons sour?
+V12,15,explain24_250,explain24,250,24,explain,Explain the immune system in simple terms.
+V12,16,how27_250,how27,250,27,how,How do you prevent a sunburn?

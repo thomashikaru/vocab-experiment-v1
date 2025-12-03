@@ -1,0 +1,17 @@
+list_number,trial_number,response_ID,question_ID,vocab_size,questionNumber,questionType,questionText
+V41,1,explain41_free,explain41,0,41,explain,Explain consequentialism in simple terms.
+V41,2,how44_free,how44,0,44,how,How do I write a haiku?
+V41,3,why42_free,why42,0,42,why,Why does dessert come at the end of a meal?
+V41,4,ELI543_free,ELI543,0,43,ELI5,What is the difference between 4 wheel drive and all wheel drive?
+V41,5,how48_4000,how48,4000,48,how,How do people find gold?
+V41,6,why46_4000,why46,4000,46,why,Why are some people mean?
+V41,7,ELI547_4000,ELI547,4000,47,ELI5,Why does Down Syndrome cause a distinct face structure no matter the parents' genes?
+V41,8,explain45_4000,explain45,4000,45,explain,Explain the concept of bravery in simple terms.
+V41,9,explain1_1000,explain1,1000,1,explain,Explain inflation in simple terms.
+V41,10,ELI53_1000,ELI53,1000,3,ELI5,"Why can people walk many miles without discomfort, but when they stand for more than 15 minutes or so, they get uncomfortable?"
+V41,11,how4_1000,how4,1000,4,how,How are books printed?
+V41,12,why2_1000,why2,1000,2,why,Why are there so many languages in the world?
+V41,13,how8_250,how8,250,8,how,How do hurricanes form?
+V41,14,why6_250,why6,250,6,why,Why do we dream?
+V41,15,explain5_250,explain5,250,5,explain,Explain the Electoral College in simple terms.
+V41,16,ELI57_250,ELI57,250,7,ELI5,"Do donated organs age according to the donor's age, or do they adapt to the age of the new body?"

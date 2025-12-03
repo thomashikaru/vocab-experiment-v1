@@ -1,0 +1,17 @@
+list_number,trial_number,response_ID,question_ID,vocab_size,questionNumber,questionType,questionText
+V23,1,why24_free,why24,0,24,why,Why does tickling make us laugh?
+V23,2,how26_free,how26,0,26,how,How do I make schnitzel?
+V23,3,explain23_free,explain23,0,23,explain,Explain the International Space Station in simple terms.
+V23,4,ELI525_free,ELI525,0,25,ELI5,Why do some animals spend so much time doing nothing?
+V23,5,why28_4000,why28,4000,28,why,Why do people die?
+V23,6,explain27_4000,explain27,4000,27,explain,Explain genes in simple terms
+V23,7,ELI529_4000,ELI529,4000,29,ELI5,"Caffeine has almost no calories, so how does it give the body energy?"
+V23,8,how30_4000,how30,4000,30,how,How do I find a lost dog?
+V23,9,ELI533_1000,ELI533,1000,33,ELI5,"If I get my password wrong three times, I get locked out, so how are hackers able to try millions of password combinations?"
+V23,10,explain31_1000,explain31,1000,31,explain,Explain homosexuality in simple terms.
+V23,11,why32_1000,why32,1000,32,why,Why do fingers wrinkle in water?
+V23,12,how34_1000,how34,1000,34,how,How do you play a guitar?
+V23,13,why36_250,why36,250,36,why,Why is there disease in the world?
+V23,14,explain35_250,explain35,250,35,explain,Explain The Count of Monte Cristo in simple terms.
+V23,15,ELI537_250,ELI537,250,37,ELI5,"When a baby is born, how are their lungs instantly able to breathe air if they haven't been breathing air for 9 months?"
+V23,16,how38_250,how38,250,38,how,How do I save someone who's choking?

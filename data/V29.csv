@@ -1,0 +1,17 @@
+list_number,trial_number,response_ID,question_ID,vocab_size,questionNumber,questionType,questionText
+V29,1,why30_free,why30,0,30,why,Why do some people believe in god?
+V29,2,how32_free,how32,0,32,how,How do I comfort a friend who is sad about a breakup?
+V29,3,explain29_free,explain29,0,29,explain,Explain natural selection in simple terms.
+V29,4,ELI531_free,ELI531,0,31,ELI5,What is it about grapefruit that messes with pretty much every prescription medication?
+V29,5,explain33_4000,explain33,4000,33,explain,Explain the Holy Roman Empire in simple terms.
+V29,6,ELI535_4000,ELI535,4000,35,ELI5,Why do alcoholics die when they stop drinking?
+V29,7,why34_4000,why34,4000,34,why,Why is the American flag red white and blue?
+V29,8,how36_4000,how36,4000,36,how,How do I convince someone to buy a car?
+V29,9,explain37_1000,explain37,1000,37,explain,Explain Wikipedia in simple terms.
+V29,10,ELI539_1000,ELI539,1000,39,ELI5,Why is finding patient zero in an epidemic so important?
+V29,11,how40_1000,how40,1000,40,how,How do parents name their babies?
+V29,12,why38_1000,why38,1000,38,why,Why do we have eyebrows?
+V29,13,how44_250,how44,250,44,how,How do I write a haiku?
+V29,14,explain41_250,explain41,250,41,explain,Explain consequentialism in simple terms.
+V29,15,why42_250,why42,250,42,why,Why does dessert come at the end of a meal?
+V29,16,ELI543_250,ELI543,250,43,ELI5,What is the difference between 4 wheel drive and all wheel drive?

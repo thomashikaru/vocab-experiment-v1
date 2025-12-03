@@ -1,0 +1,17 @@
+list_number,trial_number,response_ID,question_ID,vocab_size,questionNumber,questionType,questionText
+V10,1,why11_free,why11,0,11,why,Why does it echo if we yell in a cave but not a regular room?
+V10,2,ELI512_free,ELI512,0,12,ELI5,Why does the sound 'Hoo' produce cold air but 'Haa' produces hot air?
+V10,3,how13_free,how13,0,13,how,How are broken bones fixed?
+V10,4,explain10_free,explain10,0,10,explain,Explain the offsides rule in soccer in simple terms.
+V10,5,explain14_4000,explain14,4000,14,explain,Explain bankruptcy in simple terms.
+V10,6,ELI516_4000,ELI516,4000,16,ELI5,How come atomic bomb tests were conducted in the deserts of Nevada without any serious consequences to the environment and humans?
+V10,7,why15_4000,why15,4000,15,why,Why do fashions change?
+V10,8,how17_4000,how17,4000,17,how,How do you tie shoelaces?
+V10,9,explain18_1000,explain18,1000,18,explain,Explain the stock market in simple terms.
+V10,10,ELI520_1000,ELI520,1000,20,ELI5,Why after a good long cry can't we take a big deep breath without that huh-huh-huh tracheal contraction?
+V10,11,why19_1000,why19,1000,19,why,"Why do we shake our heads for ""no""?"
+V10,12,how21_1000,how21,1000,21,how,How do I do a push-up?
+V10,13,why23_250,why23,250,23,why,Why are dogs loyal?
+V10,14,how25_250,how25,250,25,how,How do I reload printer paper?
+V10,15,explain22_250,explain22,250,22,explain,Explain tariffs in simple terms.
+V10,16,ELI524_250,ELI524,250,24,ELI5,"When toddlers speak gibberish, are they just making random sounds or are they attempting to speak?"

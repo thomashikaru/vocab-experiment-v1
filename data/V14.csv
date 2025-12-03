@@ -1,0 +1,17 @@
+list_number,trial_number,response_ID,question_ID,vocab_size,questionNumber,questionType,questionText
+V14,1,explain14_free,explain14,0,14,explain,Explain bankruptcy in simple terms.
+V14,2,ELI516_free,ELI516,0,16,ELI5,How come atomic bomb tests were conducted in the deserts of Nevada without any serious consequences to the environment and humans?
+V14,3,why15_free,why15,0,15,why,Why do fashions change?
+V14,4,how17_free,how17,0,17,how,How do you tie shoelaces?
+V14,5,how21_4000,how21,4000,21,how,How do I do a push-up?
+V14,6,why19_4000,why19,4000,19,why,"Why do we shake our heads for ""no""?"
+V14,7,explain18_4000,explain18,4000,18,explain,Explain the stock market in simple terms.
+V14,8,ELI520_4000,ELI520,4000,20,ELI5,Why after a good long cry can't we take a big deep breath without that huh-huh-huh tracheal contraction?
+V14,9,explain22_1000,explain22,1000,22,explain,Explain tariffs in simple terms.
+V14,10,why23_1000,why23,1000,23,why,Why are dogs loyal?
+V14,11,ELI524_1000,ELI524,1000,24,ELI5,"When toddlers speak gibberish, are they just making random sounds or are they attempting to speak?"
+V14,12,how25_1000,how25,1000,25,how,How do I reload printer paper?
+V14,13,why27_250,why27,250,27,why,Why do people lie about small things?
+V14,14,explain26_250,explain26,250,26,explain,Explain the United Nations in simple terms.
+V14,15,how29_250,how29,250,29,how,How do I clean a teapot?
+V14,16,ELI528_250,ELI528,250,28,ELI5,Why hasn't the speed record of the SR-71 plane been broken for 50 years?

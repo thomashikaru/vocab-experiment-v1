@@ -1,0 +1,17 @@
+list_number,trial_number,response_ID,question_ID,vocab_size,questionNumber,questionType,questionText
+V43,1,how46_free,how46,0,46,how,How do camels survive in the desert?
+V43,2,ELI545_free,ELI545,0,45,ELI5,How do ships anchor themselves in very deep waters?
+V43,3,explain43_free,explain43,0,43,explain,Explain concussions in simple terms.
+V43,4,why44_free,why44,0,44,why,Why don't spiders get stuck in their own webs?
+V43,5,explain47_4000,explain47,4000,47,explain,Explain the concept of sarcasm in simple terms.
+V43,6,how2_4000,how2,4000,2,how,How do birds fly?
+V43,7,why48_4000,why48,4000,48,why,Why are there 24 hours in a day?
+V43,8,ELI51_4000,ELI51,4000,1,ELI5,How after 5000 years of humanity surviving off of bread do we have so many people who are now allergic to gluten?
+V43,9,why4_1000,why4,1000,4,why,Why do we need sleep?
+V43,10,how6_1000,how6,1000,6,how,How are diamonds formed?
+V43,11,ELI55_1000,ELI55,1000,5,ELI5,"If diamonds can be created in a lab, why are we still paying so much for these jewelry stones?"
+V43,12,explain3_1000,explain3,1000,3,explain,Explain Universal Grammar in simple terms.
+V43,13,how10_250,how10,250,10,how,How does Social Security work?
+V43,14,explain7_250,explain7,250,7,explain,Explain Christianity in simple terms.
+V43,15,ELI59_250,ELI59,250,9,ELI5,How do maggots get into a place like a freezer that's sealed air tight when it loses power?
+V43,16,why8_250,why8,250,8,why,Why do people bite their nails?

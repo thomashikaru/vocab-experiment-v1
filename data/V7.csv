@@ -1,0 +1,17 @@
+list_number,trial_number,response_ID,question_ID,vocab_size,questionNumber,questionType,questionText
+V7,1,how10_free,how10,0,10,how,How does Social Security work?
+V7,2,why8_free,why8,0,8,why,Why do people bite their nails?
+V7,3,explain7_free,explain7,0,7,explain,Explain Christianity in simple terms.
+V7,4,ELI59_free,ELI59,0,9,ELI5,How do maggots get into a place like a freezer that's sealed air tight when it loses power?
+V7,5,ELI513_4000,ELI513,4000,13,ELI5,"Why are Mandarin and Cantonese considered dialects of Chinese but Spanish, Portuguese, Italian, and French are considered separate languages?"
+V7,6,how14_4000,how14,4000,14,how,How do I file a tax return?
+V7,7,explain11_4000,explain11,4000,11,explain,Explain the Napoleonic Wars in simple terms.
+V7,8,why12_4000,why12,4000,12,why,Why do some animals live longer than others?
+V7,9,explain15_1000,explain15,1000,15,explain,Explain kosher food in simple terms.
+V7,10,why16_1000,why16,1000,16,why,Why do people get divorced?
+V7,11,ELI517_1000,ELI517,1000,17,ELI5,How can NASA communicate with Voyager 1 which is 21 billion kilometers away?
+V7,12,how18_1000,how18,1000,18,how,How does a crime scene investigator use DNA to solve a murder?
+V7,13,why20_250,why20,250,20,why,Why are most clocks round?
+V7,14,explain19_250,explain19,250,19,explain,Explain what banks do in simple terms.
+V7,15,how22_250,how22,250,22,how,How does a combination lock work?
+V7,16,ELI521_250,ELI521,250,21,ELI5,How can nothing be faster than light?

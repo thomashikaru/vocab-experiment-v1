@@ -1,0 +1,17 @@
+list_number,trial_number,response_ID,question_ID,vocab_size,questionNumber,questionType,questionText
+V5,1,explain5_free,explain5,0,5,explain,Explain the Electoral College in simple terms.
+V5,2,ELI57_free,ELI57,0,7,ELI5,"Do donated organs age according to the donor's age, or do they adapt to the age of the new body?"
+V5,3,how8_free,how8,0,8,how,How do hurricanes form?
+V5,4,why6_free,why6,0,6,why,Why do we dream?
+V5,5,why10_4000,why10,4000,10,why,Why did the dodo die out?
+V5,6,ELI511_4000,ELI511,4000,11,ELI5,Why aren't power lines buried underground so that people don't lose power during hurricanes?
+V5,7,explain9_4000,explain9,4000,9,explain,Explain the term checkmate in simple terms.
+V5,8,how12_4000,how12,4000,12,how,How do I make a cup of coffee?
+V5,9,how16_1000,how16,1000,16,how,How do you make a peanut butter sandwich?
+V5,10,why14_1000,why14,1000,14,why,Why do we itch?
+V5,11,ELI515_1000,ELI515,1000,15,ELI5,"If fruit is sweet to encourage animals to eat it and carry seeds away, why are lemons and limes sour?"
+V5,12,explain13_1000,explain13,1000,13,explain,Explain divorce in simple terms.
+V5,13,how20_250,how20,250,20,how,How do you pick a lock?
+V5,14,ELI519_250,ELI519,250,19,ELI5,What did Edward Snowden actually reveal about the US Government?
+V5,15,why18_250,why18,250,18,why,Why do people do drugs?
+V5,16,explain17_250,explain17,250,17,explain,Explain vaccines in simple terms.

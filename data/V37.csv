@@ -1,0 +1,17 @@
+list_number,trial_number,response_ID,question_ID,vocab_size,questionNumber,questionType,questionText
+V37,1,how40_free,how40,0,40,how,How do parents name their babies?
+V37,2,explain37_free,explain37,0,37,explain,Explain Wikipedia in simple terms.
+V37,3,ELI539_free,ELI539,0,39,ELI5,Why is finding patient zero in an epidemic so important?
+V37,4,why38_free,why38,0,38,why,Why do we have eyebrows?
+V37,5,how44_4000,how44,4000,44,how,How do I write a haiku?
+V37,6,why42_4000,why42,4000,42,why,Why does dessert come at the end of a meal?
+V37,7,ELI543_4000,ELI543,4000,43,ELI5,What is the difference between 4 wheel drive and all wheel drive?
+V37,8,explain41_4000,explain41,4000,41,explain,Explain consequentialism in simple terms.
+V37,9,why46_1000,why46,1000,46,why,Why are some people mean?
+V37,10,ELI547_1000,ELI547,1000,47,ELI5,Why does Down Syndrome cause a distinct face structure no matter the parents' genes?
+V37,11,explain45_1000,explain45,1000,45,explain,Explain the concept of bravery in simple terms.
+V37,12,how48_1000,how48,1000,48,how,How do people find gold?
+V37,13,ELI53_250,ELI53,250,3,ELI5,"Why can people walk many miles without discomfort, but when they stand for more than 15 minutes or so, they get uncomfortable?"
+V37,14,explain1_250,explain1,250,1,explain,Explain inflation in simple terms.
+V37,15,why2_250,why2,250,2,why,Why are there so many languages in the world?
+V37,16,how4_250,how4,250,4,how,How are books printed?

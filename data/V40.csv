@@ -1,0 +1,17 @@
+list_number,trial_number,response_ID,question_ID,vocab_size,questionNumber,questionType,questionText
+V40,1,why41_free,why41,0,41,why,Why are ambulances white?
+V40,2,explain40_free,explain40,0,40,explain,Explain nihilism in simple terms.
+V40,3,ELI542_free,ELI542,0,42,ELI5,Why does footage from the 70s look better than footage of the 90s?
+V40,4,how43_free,how43,0,43,how,How do I train for a marathon?
+V40,5,why45_4000,why45,4000,45,why,Why are portholes round?
+V40,6,ELI546_4000,ELI546,4000,46,ELI5,What is a hedge fund?
+V40,7,explain44_4000,explain44,4000,44,explain,Explain the concept of wetness in simple terms.
+V40,8,how47_4000,how47,4000,47,how,How do you prevent the spread of a virus?
+V40,9,how3_1000,how3,1000,3,how,How do ducks float?
+V40,10,why1_1000,why1,1000,1,why,Why does thunder make a noise?
+V40,11,explain48_1000,explain48,1000,48,explain,Explain small talk in simple terms.
+V40,12,ELI52_1000,ELI52,1000,2,ELI5,How did we get to the point where laptops and smartphones are in the same price range?
+V40,13,how7_250,how7,250,7,how,How does nuclear deterrence work?
+V40,14,explain4_250,explain4,250,4,explain,Explain climate change in simple terms.
+V40,15,ELI56_250,ELI56,250,6,ELI5,"How come you can be falling asleep watching TV, then wide awake when you go to bed five minutes later?"
+V40,16,why5_250,why5,250,5,why,Why do leaves change color in fall?

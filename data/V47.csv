@@ -1,0 +1,17 @@
+list_number,trial_number,response_ID,question_ID,vocab_size,questionNumber,questionType,questionText
+V47,1,ELI51_free,ELI51,0,1,ELI5,How after 5000 years of humanity surviving off of bread do we have so many people who are now allergic to gluten?
+V47,2,explain47_free,explain47,0,47,explain,Explain the concept of sarcasm in simple terms.
+V47,3,why48_free,why48,0,48,why,Why are there 24 hours in a day?
+V47,4,how2_free,how2,0,2,how,How do birds fly?
+V47,5,why4_4000,why4,4000,4,why,Why do we need sleep?
+V47,6,explain3_4000,explain3,4000,3,explain,Explain Universal Grammar in simple terms.
+V47,7,how6_4000,how6,4000,6,how,How are diamonds formed?
+V47,8,ELI55_4000,ELI55,4000,5,ELI5,"If diamonds can be created in a lab, why are we still paying so much for these jewelry stones?"
+V47,9,why8_1000,why8,1000,8,why,Why do people bite their nails?
+V47,10,how10_1000,how10,1000,10,how,How does Social Security work?
+V47,11,explain7_1000,explain7,1000,7,explain,Explain Christianity in simple terms.
+V47,12,ELI59_1000,ELI59,1000,9,ELI5,How do maggots get into a place like a freezer that's sealed air tight when it loses power?
+V47,13,how14_250,how14,250,14,how,How do I file a tax return?
+V47,14,why12_250,why12,250,12,why,Why do some animals live longer than others?
+V47,15,ELI513_250,ELI513,250,13,ELI5,"Why are Mandarin and Cantonese considered dialects of Chinese but Spanish, Portuguese, Italian, and French are considered separate languages?"
+V47,16,explain11_250,explain11,250,11,explain,Explain the Napoleonic Wars in simple terms.

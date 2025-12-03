@@ -1,0 +1,17 @@
+list_number,trial_number,response_ID,question_ID,vocab_size,questionNumber,questionType,questionText
+V25,1,ELI527_free,ELI527,0,27,ELI5,Why does hearing yourself speak with a few seconds of delay completely crash your brain?
+V25,2,explain25_free,explain25,0,25,explain,Explain the placebo effect in simple terms.
+V25,3,why26_free,why26,0,26,why,Why are flowers colorful?
+V25,4,how28_free,how28,0,28,how,How do you stop your finger from bleeding?
+V25,5,why30_4000,why30,4000,30,why,Why do some people believe in god?
+V25,6,ELI531_4000,ELI531,4000,31,ELI5,What is it about grapefruit that messes with pretty much every prescription medication?
+V25,7,explain29_4000,explain29,4000,29,explain,Explain natural selection in simple terms.
+V25,8,how32_4000,how32,4000,32,how,How do I comfort a friend who is sad about a breakup?
+V25,9,why34_1000,why34,1000,34,why,Why is the American flag red white and blue?
+V25,10,explain33_1000,explain33,1000,33,explain,Explain the Holy Roman Empire in simple terms.
+V25,11,how36_1000,how36,1000,36,how,How do I convince someone to buy a car?
+V25,12,ELI535_1000,ELI535,1000,35,ELI5,Why do alcoholics die when they stop drinking?
+V25,13,why38_250,why38,250,38,why,Why do we have eyebrows?
+V25,14,explain37_250,explain37,250,37,explain,Explain Wikipedia in simple terms.
+V25,15,how40_250,how40,250,40,how,How do parents name their babies?
+V25,16,ELI539_250,ELI539,250,39,ELI5,Why is finding patient zero in an epidemic so important?

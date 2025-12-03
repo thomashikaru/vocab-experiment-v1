@@ -1,0 +1,17 @@
+list_number,trial_number,response_ID,question_ID,vocab_size,questionNumber,questionType,questionText
+V21,1,why22_free,why22,0,22,why,Why do we hiccup?
+V21,2,explain21_free,explain21,0,21,explain,Explain how the Fed controls the economy in simple terms.
+V21,3,how24_free,how24,0,24,how,How would you smuggle ham through airport security?
+V21,4,ELI523_free,ELI523,0,23,ELI5,Why does the sun feel so warm despite being 93 million miles away?
+V21,5,why26_4000,why26,4000,26,why,Why are flowers colorful?
+V21,6,ELI527_4000,ELI527,4000,27,ELI5,Why does hearing yourself speak with a few seconds of delay completely crash your brain?
+V21,7,how28_4000,how28,4000,28,how,How do you stop your finger from bleeding?
+V21,8,explain25_4000,explain25,4000,25,explain,Explain the placebo effect in simple terms.
+V21,9,ELI531_1000,ELI531,1000,31,ELI5,What is it about grapefruit that messes with pretty much every prescription medication?
+V21,10,how32_1000,how32,1000,32,how,How do I comfort a friend who is sad about a breakup?
+V21,11,why30_1000,why30,1000,30,why,Why do some people believe in god?
+V21,12,explain29_1000,explain29,1000,29,explain,Explain natural selection in simple terms.
+V21,13,explain33_250,explain33,250,33,explain,Explain the Holy Roman Empire in simple terms.
+V21,14,why34_250,why34,250,34,why,Why is the American flag red white and blue?
+V21,15,ELI535_250,ELI535,250,35,ELI5,Why do alcoholics die when they stop drinking?
+V21,16,how36_250,how36,250,36,how,How do I convince someone to buy a car?

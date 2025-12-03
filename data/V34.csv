@@ -1,0 +1,17 @@
+list_number,trial_number,response_ID,question_ID,vocab_size,questionNumber,questionType,questionText
+V34,1,why35_free,why35,0,35,why,Why is the earth round?
+V34,2,explain34_free,explain34,0,34,explain,Explain hibernation in simple terms.
+V34,3,ELI536_free,ELI536,0,36,ELI5,"Why is it healthy to strain your heart through exercise, but unhealthy to strain it through stress, caffeine, or nicotine?"
+V34,4,how37_free,how37,0,37,how,How can I haggle prices at a market effectively?
+V34,5,how41_4000,how41,4000,41,how,How do you remove salt from water?
+V34,6,why39_4000,why39,4000,39,why,Why do people get married?
+V34,7,explain38_4000,explain38,4000,38,explain,Explain social networks in simple terms.
+V34,8,ELI540_4000,ELI540,4000,40,ELI5,"At a buffet, why is it safe to leave food out for hours?"
+V34,9,ELI544_1000,ELI544,1000,44,ELI5,Why do ships have circular windows rather than square ones?
+V34,10,how45_1000,how45,1000,45,how,How do fish breathe underwater?
+V34,11,why43_1000,why43,1000,43,why,Why do languages change?
+V34,12,explain42_1000,explain42,1000,42,explain,Explain credit cards in simple terms.
+V34,13,how1_250,how1,250,1,how,How do rocket engines work?
+V34,14,explain46_250,explain46,250,46,explain,Explain the concept of allergies in simple terms.
+V34,15,ELI548_250,ELI548,250,48,ELI5,Why does a candle not create smoke when burning but lots of smoke when you blow it out?
+V34,16,why47_250,why47,250,47,why,Why do people overeat?

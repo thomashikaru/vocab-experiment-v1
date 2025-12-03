@@ -1,0 +1,17 @@
+list_number,trial_number,response_ID,question_ID,vocab_size,questionNumber,questionType,questionText
+V19,1,why20_free,why20,0,20,why,Why are most clocks round?
+V19,2,ELI521_free,ELI521,0,21,ELI5,How can nothing be faster than light?
+V19,3,how22_free,how22,0,22,how,How does a combination lock work?
+V19,4,explain19_free,explain19,0,19,explain,Explain what banks do in simple terms.
+V19,5,why24_4000,why24,4000,24,why,Why does tickling make us laugh?
+V19,6,ELI525_4000,ELI525,4000,25,ELI5,Why do some animals spend so much time doing nothing?
+V19,7,how26_4000,how26,4000,26,how,How do I make schnitzel?
+V19,8,explain23_4000,explain23,4000,23,explain,Explain the International Space Station in simple terms.
+V19,9,why28_1000,why28,1000,28,why,Why do people die?
+V19,10,how30_1000,how30,1000,30,how,How do I find a lost dog?
+V19,11,ELI529_1000,ELI529,1000,29,ELI5,"Caffeine has almost no calories, so how does it give the body energy?"
+V19,12,explain27_1000,explain27,1000,27,explain,Explain genes in simple terms
+V19,13,why32_250,why32,250,32,why,Why do fingers wrinkle in water?
+V19,14,ELI533_250,ELI533,250,33,ELI5,"If I get my password wrong three times, I get locked out, so how are hackers able to try millions of password combinations?"
+V19,15,explain31_250,explain31,250,31,explain,Explain homosexuality in simple terms.
+V19,16,how34_250,how34,250,34,how,How do you play a guitar?

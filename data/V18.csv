@@ -1,0 +1,17 @@
+list_number,trial_number,response_ID,question_ID,vocab_size,questionNumber,questionType,questionText
+V18,1,explain18_free,explain18,0,18,explain,Explain the stock market in simple terms.
+V18,2,ELI520_free,ELI520,0,20,ELI5,Why after a good long cry can't we take a big deep breath without that huh-huh-huh tracheal contraction?
+V18,3,why19_free,why19,0,19,why,"Why do we shake our heads for ""no""?"
+V18,4,how21_free,how21,0,21,how,How do I do a push-up?
+V18,5,how25_4000,how25,4000,25,how,How do I reload printer paper?
+V18,6,explain22_4000,explain22,4000,22,explain,Explain tariffs in simple terms.
+V18,7,why23_4000,why23,4000,23,why,Why are dogs loyal?
+V18,8,ELI524_4000,ELI524,4000,24,ELI5,"When toddlers speak gibberish, are they just making random sounds or are they attempting to speak?"
+V18,9,why27_1000,why27,1000,27,why,Why do people lie about small things?
+V18,10,explain26_1000,explain26,1000,26,explain,Explain the United Nations in simple terms.
+V18,11,how29_1000,how29,1000,29,how,How do I clean a teapot?
+V18,12,ELI528_1000,ELI528,1000,28,ELI5,Why hasn't the speed record of the SR-71 plane been broken for 50 years?
+V18,13,how33_250,how33,250,33,how,How do I bake a tray of brownies?
+V18,14,ELI532_250,ELI532,250,32,ELI5,How can an eagle see a rabbit in a field from a mile away?
+V18,15,explain30_250,explain30,250,30,explain,Explain depression in simple terms.
+V18,16,why31_250,why31,250,31,why,Why does salt melt ice?

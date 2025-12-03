@@ -1,0 +1,17 @@
+list_number,trial_number,response_ID,question_ID,vocab_size,questionNumber,questionType,questionText
+V30,1,ELI532_free,ELI532,0,32,ELI5,How can an eagle see a rabbit in a field from a mile away?
+V30,2,how33_free,how33,0,33,how,How do I bake a tray of brownies?
+V30,3,why31_free,why31,0,31,why,Why does salt melt ice?
+V30,4,explain30_free,explain30,0,30,explain,Explain depression in simple terms.
+V30,5,ELI536_4000,ELI536,4000,36,ELI5,"Why is it healthy to strain your heart through exercise, but unhealthy to strain it through stress, caffeine, or nicotine?"
+V30,6,explain34_4000,explain34,4000,34,explain,Explain hibernation in simple terms.
+V30,7,why35_4000,why35,4000,35,why,Why is the earth round?
+V30,8,how37_4000,how37,4000,37,how,How can I haggle prices at a market effectively?
+V30,9,how41_1000,how41,1000,41,how,How do you remove salt from water?
+V30,10,ELI540_1000,ELI540,1000,40,ELI5,"At a buffet, why is it safe to leave food out for hours?"
+V30,11,why39_1000,why39,1000,39,why,Why do people get married?
+V30,12,explain38_1000,explain38,1000,38,explain,Explain social networks in simple terms.
+V30,13,explain42_250,explain42,250,42,explain,Explain credit cards in simple terms.
+V30,14,ELI544_250,ELI544,250,44,ELI5,Why do ships have circular windows rather than square ones?
+V30,15,how45_250,how45,250,45,how,How do fish breathe underwater?
+V30,16,why43_250,why43,250,43,why,Why do languages change?

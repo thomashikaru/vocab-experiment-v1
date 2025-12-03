@@ -1,0 +1,17 @@
+list_number,trial_number,response_ID,question_ID,vocab_size,questionNumber,questionType,questionText
+V16,1,explain16_free,explain16,0,16,explain,Explain cryptocurrency in simple terms.
+V16,2,ELI518_free,ELI518,0,18,ELI5,Why do bad smells like smoke and rotting food linger longer than good smells like flowers or perfume?
+V16,3,how19_free,how19,0,19,how,How do you rescue a cat from a tree?
+V16,4,why17_free,why17,0,17,why,Why do fridges hum?
+V16,5,how23_4000,how23,4000,23,how,How do I disable my smoke alarm?
+V16,6,why21_4000,why21,4000,21,why,Why does Saturn have rings?
+V16,7,explain20_4000,explain20,4000,20,explain,Explain how the Fed creates money in simple terms.
+V16,8,ELI522_4000,ELI522,4000,22,ELI5,Why is the letter W called 'double U' when it is clearly 'double V'?
+V16,9,explain24_1000,explain24,1000,24,explain,Explain the immune system in simple terms.
+V16,10,why25_1000,why25,1000,25,why,Why are lemons sour?
+V16,11,how27_1000,how27,1000,27,how,How do you prevent a sunburn?
+V16,12,ELI526_1000,ELI526,1000,26,ELI5,Why do some letters of the alphabet look totally different when written in uppercase and lowercase?
+V16,13,why29_250,why29,250,29,why,Why are human babies born so helpless?
+V16,14,explain28_250,explain28,250,28,explain,Explain a black hole in simple terms.
+V16,15,how31_250,how31,250,31,how,How do I change a flat tire?
+V16,16,ELI530_250,ELI530,250,30,ELI5,Why does your body feel physically ill after experiencing emotional trauma?

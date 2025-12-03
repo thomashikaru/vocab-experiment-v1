@@ -1,0 +1,17 @@
+list_number,trial_number,response_ID,question_ID,vocab_size,questionNumber,questionType,questionText
+V15,1,how18_free,how18,0,18,how,How does a crime scene investigator use DNA to solve a murder?
+V15,2,why16_free,why16,0,16,why,Why do people get divorced?
+V15,3,ELI517_free,ELI517,0,17,ELI5,How can NASA communicate with Voyager 1 which is 21 billion kilometers away?
+V15,4,explain15_free,explain15,0,15,explain,Explain kosher food in simple terms.
+V15,5,why20_4000,why20,4000,20,why,Why are most clocks round?
+V15,6,ELI521_4000,ELI521,4000,21,ELI5,How can nothing be faster than light?
+V15,7,explain19_4000,explain19,4000,19,explain,Explain what banks do in simple terms.
+V15,8,how22_4000,how22,4000,22,how,How does a combination lock work?
+V15,9,ELI525_1000,ELI525,1000,25,ELI5,Why do some animals spend so much time doing nothing?
+V15,10,explain23_1000,explain23,1000,23,explain,Explain the International Space Station in simple terms.
+V15,11,how26_1000,how26,1000,26,how,How do I make schnitzel?
+V15,12,why24_1000,why24,1000,24,why,Why does tickling make us laugh?
+V15,13,how30_250,how30,250,30,how,How do I find a lost dog?
+V15,14,why28_250,why28,250,28,why,Why do people die?
+V15,15,explain27_250,explain27,250,27,explain,Explain genes in simple terms
+V15,16,ELI529_250,ELI529,250,29,ELI5,"Caffeine has almost no calories, so how does it give the body energy?"

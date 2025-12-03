@@ -1,0 +1,17 @@
+list_number,trial_number,response_ID,question_ID,vocab_size,questionNumber,questionType,questionText
+V44,1,ELI546_free,ELI546,0,46,ELI5,What is a hedge fund?
+V44,2,why45_free,why45,0,45,why,Why are portholes round?
+V44,3,explain44_free,explain44,0,44,explain,Explain the concept of wetness in simple terms.
+V44,4,how47_free,how47,0,47,how,How do you prevent the spread of a virus?
+V44,5,how3_4000,how3,4000,3,how,How do ducks float?
+V44,6,ELI52_4000,ELI52,4000,2,ELI5,How did we get to the point where laptops and smartphones are in the same price range?
+V44,7,explain48_4000,explain48,4000,48,explain,Explain small talk in simple terms.
+V44,8,why1_4000,why1,4000,1,why,Why does thunder make a noise?
+V44,9,why5_1000,why5,1000,5,why,Why do leaves change color in fall?
+V44,10,how7_1000,how7,1000,7,how,How does nuclear deterrence work?
+V44,11,ELI56_1000,ELI56,1000,6,ELI5,"How come you can be falling asleep watching TV, then wide awake when you go to bed five minutes later?"
+V44,12,explain4_1000,explain4,1000,4,explain,Explain climate change in simple terms.
+V44,13,why9_250,why9,250,9,why,Why are eggs egg-shaped?
+V44,14,explain8_250,explain8,250,8,explain,Explain machine learning in simple terms.
+V44,15,ELI510_250,ELI510,250,10,ELI5,"If ants love sugar, and bees make honey, why aren't bee hives constantly attacked by ants?"
+V44,16,how11_250,how11,250,11,how,How are Nobel Prize laureates selected?

@@ -1,0 +1,17 @@
+list_number,trial_number,response_ID,question_ID,vocab_size,questionNumber,questionType,questionText
+V31,1,why32_free,why32,0,32,why,Why do fingers wrinkle in water?
+V31,2,how34_free,how34,0,34,how,How do you play a guitar?
+V31,3,ELI533_free,ELI533,0,33,ELI5,"If I get my password wrong three times, I get locked out, so how are hackers able to try millions of password combinations?"
+V31,4,explain31_free,explain31,0,31,explain,Explain homosexuality in simple terms.
+V31,5,ELI537_4000,ELI537,4000,37,ELI5,"When a baby is born, how are their lungs instantly able to breathe air if they haven't been breathing air for 9 months?"
+V31,6,explain35_4000,explain35,4000,35,explain,Explain The Count of Monte Cristo in simple terms.
+V31,7,how38_4000,how38,4000,38,how,How do I save someone who's choking?
+V31,8,why36_4000,why36,4000,36,why,Why is there disease in the world?
+V31,9,ELI541_1000,ELI541,1000,41,ELI5,"How can our brains remember that we forgot something, but can't remember what we forgot?"
+V31,10,why40_1000,why40,1000,40,why,Why is there so much salt in the ocean but not rivers?
+V31,11,explain39_1000,explain39,1000,39,explain,Explain Impressionist art in simple terms.
+V31,12,how42_1000,how42,1000,42,how,How do languages get new words?
+V31,13,why44_250,why44,250,44,why,Why don't spiders get stuck in their own webs?
+V31,14,explain43_250,explain43,250,43,explain,Explain concussions in simple terms.
+V31,15,how46_250,how46,250,46,how,How do camels survive in the desert?
+V31,16,ELI545_250,ELI545,250,45,ELI5,How do ships anchor themselves in very deep waters?
