@@ -45,6 +45,10 @@
             color: #333;
             font-weight: 500;
             line-height: 1.4;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
         }
         
         .consent-screen {
@@ -1166,9 +1170,16 @@
                 // Experiment event listeners
                 this.textInput.addEventListener('input', (e) => this.handleInput(e));
                 this.textInput.addEventListener('keydown', (e) => this.handleKeyDown(e));
+                this.textInput.addEventListener('paste', (e) => this.handlePaste(e));
                 this.textInput.addEventListener('blur', () => this.hideDropdown());
                 this.submitBtn.addEventListener('click', () => this.submitText());
                 this.clearBtn.addEventListener('click', () => this.clearText());
+                
+                // Prevent copying/selecting from promptText
+                this.promptText.addEventListener('copy', (e) => e.preventDefault());
+                this.promptText.addEventListener('cut', (e) => e.preventDefault());
+                this.promptText.addEventListener('contextmenu', (e) => e.preventDefault());
+                this.promptText.addEventListener('selectstart', (e) => e.preventDefault());
                 
                 // Restrict cursor movement and editing - force linear typing only
                 this.textInput.addEventListener('keydown', (e) => this.restrictCursorMovement(e));
@@ -1254,6 +1265,13 @@
                         this.textInput.setSelectionRange(textLength, textLength);
                     }
                 }, 0);
+            }
+            
+            handlePaste(e) {
+                // Block all paste operations from clipboard
+                e.preventDefault();
+                e.stopPropagation();
+                return false;
             }
 
             handleKeyDown(e) {
@@ -1636,6 +1654,12 @@
             }
 
             updateWordBreakdown() {
+                // Only show Word Analysis in debug mode
+                if (!this.debugMode) {
+                    this.wordBreakdown.style.display = 'none';
+                    return;
+                }
+                
                 const words = this.currentText.trim().split(/\s+/).filter(word => word.length > 0);
                 
                 if (words.length === 0) {
