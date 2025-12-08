@@ -426,6 +426,23 @@
             color: #495057;
         }
         
+        .timer-container {
+            text-align: center;
+            margin: 10px 0;
+            min-height: 24px;
+        }
+        
+        .timer-display {
+            font-size: 14px;
+            color: #666;
+            font-weight: 500;
+        }
+        
+        .timer-display.expired {
+            color: #dc3545;
+            font-weight: 600;
+        }
+        
         /* Custom Modal Styles */
         .modal-overlay {
             display: none;
@@ -578,6 +595,10 @@
             <div class="dropdown" id="dropdown"></div>
         </div>
         
+        <div class="timer-container" id="timerContainer">
+            <div class="timer-display" id="timerDisplay"></div>
+        </div>
+        
         <div class="controls">
             <button id="submitBtn" disabled>Submit</button>
             <button id="clearBtn">Clear</button>
@@ -591,10 +612,19 @@
     
     <!-- Debrief Screen -->
     <div class="debrief-screen" id="debriefScreen">
-        <h1>Final Question</h1>
+        <h1>Final Questions</h1>
         <div class="debrief-content">
             <p>In the final round of this experiment, the allowed vocabulary is very small. If you could add up to 5 words to the vocabulary to make your job easier, what would they be?</p>
-            <textarea id="debriefResponse" class="debrief-textarea" placeholder="Please list up to 5 words you would add to the vocabulary..."></textarea>
+            <textarea id="debriefResponse" class="debrief-textarea" placeholder="Please list up to 5 words you would add to the vocabulary..." maxlength="1000"></textarea>
+            <div style="text-align: right; font-size: 12px; color: #666; margin-top: 5px;">
+                <span id="debriefResponseCount">0</span>/1000 characters
+            </div>
+            
+            <p style="margin-top: 30px;">(Optional) Do you have any comments on the experiment? Feel free to mention if anything was too hard, too easy, too boring, or too confusing.</p>
+            <textarea id="debriefComments" class="debrief-textarea" placeholder="Your comments..." maxlength="1000"></textarea>
+            <div style="text-align: right; font-size: 12px; color: #666; margin-top: 5px;">
+                <span id="debriefCommentsCount">0</span>/1000 characters
+            </div>
         </div>
         <button class="debrief-button" id="debriefSubmitBtn">Next</button>
     </div>
@@ -735,6 +765,11 @@
                 // Current vocab size (will be set per trial from CSV)
                 this.vocabSize = 0;
                 this.previousVocabSize = null; // Track previous vocab size to detect changes
+                
+                // Timer system
+                this.timerInterval = null; // Interval ID for the countdown timer
+                this.timerSeconds = 60; // Countdown duration in seconds
+                this.timeRemaining = 60; // Current time remaining
                 
                 // Get question list name from URL parameter (V1, V2, ..., V48)
                 this.questionListName = this.getQuestionListNameFromURL();
@@ -946,6 +981,9 @@
                 this.consentSubmitBtn = document.getElementById('consentSubmitBtn');
                 this.instructionContinueBtn = document.getElementById('instructionContinueBtn');
                 this.debriefResponse = document.getElementById('debriefResponse');
+                this.debriefComments = document.getElementById('debriefComments');
+                this.debriefResponseCount = document.getElementById('debriefResponseCount');
+                this.debriefCommentsCount = document.getElementById('debriefCommentsCount');
                 this.debriefSubmitBtn = document.getElementById('debriefSubmitBtn');
                 
                 // Experiment elements
@@ -960,6 +998,8 @@
                 this.promptCounter = document.getElementById('promptCounter');
                 this.promptText = document.getElementById('promptText');
                 this.completionCodeEl = document.getElementById('completionCode');
+                this.timerContainer = document.getElementById('timerContainer');
+                this.timerDisplay = document.getElementById('timerDisplay');
                 
                 // Modal elements
                 this.vocabChangeModal = document.getElementById('vocabChangeModal');
@@ -1032,6 +1072,9 @@
                 
                 // Record trial start time for first prompt
                 this.trialStartTime = Date.now();
+                
+                // Start the countdown timer for the first trial
+                this.startTimer();
                 
                 // console.log(`Experiment started for participant: ${this.participantId}`);
             }
@@ -1164,7 +1207,11 @@
                 this.instructionContinueBtn.addEventListener('click', () => this.startActualExperiment());
                 
                 // Debrief screen event listeners
-                this.debriefResponse.addEventListener('input', () => this.updateDebriefButton());
+                this.debriefResponse.addEventListener('input', () => {
+                    this.updateDebriefButton();
+                    this.updateDebriefCounters();
+                });
+                this.debriefComments.addEventListener('input', () => this.updateDebriefCounters());
                 this.debriefSubmitBtn.addEventListener('click', () => this.submitDebrief());
                 
                 // Experiment event listeners
@@ -1572,6 +1619,55 @@
                 
                 // Record trial start time when prompt is shown
                 this.trialStartTime = Date.now();
+                
+                // Start the countdown timer for this trial (only if experiment screen is visible)
+                if (this.experimentScreen && this.experimentScreen.style.display !== 'none') {
+                    this.startTimer();
+                }
+            }
+            
+            startTimer() {
+                // Stop any existing timer
+                this.stopTimer();
+                
+                // Reset timer
+                this.timeRemaining = this.timerSeconds;
+                this.updateTimerDisplay();
+                
+                // Start countdown
+                this.timerInterval = setInterval(() => {
+                    this.timeRemaining--;
+                    this.updateTimerDisplay();
+                    
+                    if (this.timeRemaining <= 0) {
+                        this.stopTimer();
+                        this.showTimerExpired();
+                    }
+                }, 1000);
+            }
+            
+            stopTimer() {
+                if (this.timerInterval) {
+                    clearInterval(this.timerInterval);
+                    this.timerInterval = null;
+                }
+            }
+            
+            updateTimerDisplay() {
+                if (!this.timerDisplay) return;
+                
+                if (this.timeRemaining > 0) {
+                    this.timerDisplay.textContent = `Time remaining: ${this.timeRemaining}s`;
+                    this.timerDisplay.classList.remove('expired');
+                } else {
+                    this.timerDisplay.textContent = 'Time is up, please move to the next question';
+                    this.timerDisplay.classList.add('expired');
+                }
+            }
+            
+            showTimerExpired() {
+                // Timer has expired - display message in red
+                this.updateTimerDisplay();
             }
 
             updateStats() {
@@ -1853,6 +1949,9 @@
             }
             
             showDebriefScreen() {
+                // Stop the timer when moving to debrief
+                this.stopTimer();
+                
                 // Hide experiment screen
                 this.experimentScreen.style.display = 'none';
                 
@@ -1862,8 +1961,9 @@
                 // Focus on textarea
                 this.debriefResponse.focus();
                 
-                // Update button state
+                // Update button state and character counters
                 this.updateDebriefButton();
+                this.updateDebriefCounters();
             }
             
             updateDebriefButton() {
@@ -1871,17 +1971,40 @@
                 this.debriefSubmitBtn.disabled = !hasResponse;
             }
             
+            updateDebriefCounters() {
+                if (this.debriefResponseCount) {
+                    this.debriefResponseCount.textContent = this.debriefResponse.value.length;
+                }
+                if (this.debriefCommentsCount) {
+                    this.debriefCommentsCount.textContent = this.debriefComments.value.length;
+                }
+            }
+            
             submitDebrief() {
                 const debriefResponse = this.debriefResponse.value.trim();
+                const debriefComments = this.debriefComments.value.trim();
                 
                 if (!debriefResponse) {
                     alert('Please provide your response before continuing.');
                     return;
                 }
                 
-                // Create debrief result
+                // Validate length (backup check, maxlength should prevent this)
+                if (debriefResponse.length > 1000) {
+                    alert('Response is too long. Please limit your response to 1000 characters.');
+                    return;
+                }
+                if (debriefComments.length > 1000) {
+                    alert('Comments are too long. Please limit your comments to 1000 characters.');
+                    return;
+                }
+                
+                // Create debrief results array
                 // Use the vocab_size from the last prompt (which should be the smallest)
                 const lastPrompt = this.prompts.length > 0 ? this.prompts[this.prompts.length - 1] : null;
+                const debriefResults = [];
+                
+                // First debrief question (required)
                 const debriefResult = {
                     participantId: this.participantId,
                     Experiment: this.EXPERIMENT_ID,
@@ -1895,12 +2018,34 @@
                     endTime: new Date().toISOString(),
                     timestamp: new Date().toISOString()
                 };
+                debriefResults.push(debriefResult);
                 
-                // Send debrief to server
-                this.sendDataToServer([debriefResult]);
+                // Second debrief question (optional)
+                if (debriefComments) {
+                    const debriefCommentsResult = {
+                        participantId: this.participantId,
+                        Experiment: this.EXPERIMENT_ID,
+                        vocabSize: lastPrompt ? lastPrompt.vocab_size : this.vocabSize,
+                        questionListName: this.questionListName,
+                        promptIndex: 'debrief_comments',
+                        prompt: '(Optional) Do you have any comments on the experiment? Feel free to mention if anything was too hard, too easy, too boring, or too confusing.',
+                        response: debriefComments,
+                        wordHistory: [],
+                        startTime: new Date().toISOString(),
+                        endTime: new Date().toISOString(),
+                        timestamp: new Date().toISOString()
+                    };
+                    debriefResults.push(debriefCommentsResult);
+                }
+                
+                // Send debrief results to server
+                this.sendDataToServer(debriefResults);
                 
                 console.log('=== DEBRIEF SUBMITTED ===');
                 console.log('Debrief Response:', debriefResponse);
+                if (debriefComments) {
+                    console.log('Debrief Comments:', debriefComments);
+                }
                 console.log('===================');
                 
                 // Show thank you screen
