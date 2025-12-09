@@ -537,7 +537,7 @@
         <div class="consent-form">
             <div class="form-group">
                 <label for="participantId">Participant ID:</label>
-                <input type="text" id="participantId" placeholder="Enter your participant ID">
+                <input type="text" id="participantId" placeholder="Enter your participant ID" autocomplete="off">
             </div>
             
             <div class="checkbox-group">
@@ -556,10 +556,6 @@
         <h1>Instructions</h1>
         <div class="instruction-content">
             <ul>
-                <li>This study tests your ability to answer questions using only a limited set of words.</li>
-                <li>You won't be able to type words outside of the vocabulary, and you'll hear a buzzer if you try.</li>
-                <li>It's OK if you don't know the correct answer to the question; just make your best guess.</li>
-                <li>Type naturally rather than choosing words from the dropdown menu. The dropdown menu will show which words are allowed, but it is not clickable.</li>
             </ul>
         </div>
         <button class="instruction-button" id="instructionContinueBtn">Continue to Experiment</button>
@@ -568,7 +564,7 @@
     <!-- Experiment Screen -->
     <div class="container experiment-screen" id="experimentScreen">
         <h1>Vocabulary Constraint Experiment</h1>
-        <p style="text-align: center; color: #666; margin-top: -20px; margin-bottom: 30px;">
+        <p style="text-align: left; color: #666; margin-top: -20px; margin-bottom: 30px;">
             Please respond to the question below. Remember: it's OK if you don't know the correct answer; just make your best guess<br>
         </p>
         
@@ -595,7 +591,7 @@
         </div>
         
         <div class="input-container">
-            <input type="text" id="textInput" placeholder="Start typing...">
+            <input type="text" id="textInput" placeholder="Start typing..." autocomplete="off">
             <div class="dropdown" id="dropdown"></div>
         </div>
         
@@ -615,13 +611,13 @@
         <h1>Final Questions</h1>
         <div class="debrief-content">
             <p>In the final round of this experiment, the allowed vocabulary is very small. If you could add up to 5 words to the vocabulary to make your job easier, what would they be?</p>
-            <textarea id="debriefResponse" class="debrief-textarea" placeholder="Please list up to 5 words you would add to the vocabulary..." maxlength="1000"></textarea>
+            <textarea id="debriefResponse" class="debrief-textarea" placeholder="Please list up to 5 words you would add to the vocabulary..." maxlength="1000" autocomplete="off"></textarea>
             <div style="text-align: right; font-size: 12px; color: #666; margin-top: 5px;">
                 <span id="debriefResponseCount">0</span>/1000 characters
             </div>
             
             <p style="margin-top: 30px;">(Optional) Do you have any comments on the experiment? Feel free to mention if anything was too hard, too easy, too boring, or too confusing.</p>
-            <textarea id="debriefComments" class="debrief-textarea" placeholder="Your comments..." maxlength="1000"></textarea>
+            <textarea id="debriefComments" class="debrief-textarea" placeholder="Your comments..." maxlength="1000" autocomplete="off"></textarea>
             <div style="text-align: right; font-size: 12px; color: #666; margin-top: 5px;">
                 <span id="debriefCommentsCount">0</span>/1000 characters
             </div>
@@ -760,7 +756,7 @@
                 this.EXPERIMENT_ID = 207; // Configure this variable as needed
                 
                 // Completion code (default value)
-                this.COMPLETION_CODE = "000000"; // Configure this variable as needed
+                this.COMPLETION_CODE = "C1EQ7XEL"; // Configure this variable as needed
                 
                 // Current vocab size (will be set per trial from CSV)
                 this.vocabSize = 0;
@@ -1047,11 +1043,13 @@
                 // Generic instructions that don't depend on first trial vocab size
                 instructionContent.innerHTML = `
                     <li>This study tests your ability to answer questions under increasingly restrictive vocabulary constraints.</li>
-                    <li>You will be asked to answer multiple questions. For each question, you may only use words from a limited vocabulary.</li>
+                    <li>You will be asked to answer a series of <strong>16 questions</strong>.</li>
+                    <li>Each response should be <strong>one or two sentences</strong>.</li>
                     <li>You won't be able to type words outside of the allowed vocabulary, and you'll hear a buzzer if you try.</li>
-                    <li>It's OK if you don't know the correct answer to the question; just make your best guess.</li>
-                    <li>Type naturally rather than choosing words from the dropdown menu. The dropdown menu will show which words are allowed, but it is not clickable.</li>
-                    <li><strong>Note:</strong> The vocabulary size will change between questions, becoming more restrictive as the experiment progresses.</li>
+                    <li>It's OK if you don't know the correct answer to the question; <strong>just make your best guess</strong> that you think makes sense.</li>
+                    <li>The dropdown menu will show which words are allowed, but it is not clickable, so please simply type naturally.</li>
+                    <li>You will have <strong>a maximum of 90 seconds</strong> to answer each question (a timer will be shown).</li>
+                    <li>The vocabulary size may change between questions, becoming more restrictive as the experiment progresses.</li>
                 `;
             }
             
